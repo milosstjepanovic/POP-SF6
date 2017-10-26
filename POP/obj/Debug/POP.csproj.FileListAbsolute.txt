@@ -1,0 +1,7 @@
+c:\users\user\source\repos\POP\POP\obj\Debug\POP.csprojResolveAssemblyReference.cache
+c:\users\user\source\repos\POP\POP\obj\Debug\POP.csproj.CoreCompileInputs.cache
+c:\users\user\source\repos\POP\POP\bin\Debug\POP.exe.config
+c:\users\user\source\repos\POP\POP\bin\Debug\POP.exe
+c:\users\user\source\repos\POP\POP\bin\Debug\POP.pdb
+c:\users\user\source\repos\POP\POP\obj\Debug\POP.exe
+c:\users\user\source\repos\POP\POP\obj\Debug\POP.pdb
