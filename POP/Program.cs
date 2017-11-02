@@ -47,7 +47,16 @@ namespace POP
                 Naziv = "Ekstra krevet",
             };
 
+            var n2 = new Namestaj()
+            {
+                Id = 2,
+                Cena = 9000,
+                TipNamestaja = tp1,
+                Naziv = "Bracni krevet",
+            };
+
             Namestaj.Add(n1);
+            Namestaj.Add(n2);
 
             TipoviNamestaja.Add(tp1);
             TipoviNamestaja.Add(tp2);
@@ -66,13 +75,23 @@ namespace POP
                 //ispitaj nesto
                 do
                 {
-                    Console.WriteLine("==== GLAVNI MENI ====");
+                    Console.WriteLine("\n==== GLAVNI MENI ====");
                     Console.WriteLine("1. Rad sa namestajem");
                     Console.WriteLine("2. Rad sa tipom namestaja");
                     //...dovrsiti kod kuce
                     Console.WriteLine("0. Izlaz iz aplikacije");
 
+                    /*try
+                    {
+                        //izbor = int.Parse(Console.ReadLine());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Niste uneli brojnu vrednost! {e}");
+                    }  */
+
                     izbor = int.Parse(Console.ReadLine());
+                    
                 } while (izbor < 0 || izbor > 2);
 
                 switch (izbor)
@@ -94,7 +113,7 @@ namespace POP
 
             do
             {
-                Console.WriteLine("====== RAD SA NAMESTAJEM ======");
+                Console.WriteLine("\n====== RAD SA NAMESTAJEM ======");
                 IspisiCRUDMeni();
 
                 izbor = int.Parse(Console.ReadLine());
@@ -113,20 +132,71 @@ namespace POP
                 case 3:
                     IzmeniNamestaj();
                     break;
+                case 4:
+                    ObrisiNamestaj();
+                    break;
                 default:
                     break;
             }
         }
 
+        private static void ObrisiNamestaj()
+        {
+            Console.WriteLine("\n====== BRISANJE NAMESTAJA =====");
+            Console.Write("Unesite ID namestaja koji zelite da obrisete: ");
+            int Id = int.Parse(Console.ReadLine());
+            for (int i = 0; i < Namestaj.Count; i++)
+            {
+                if (Namestaj[i].Id == Id)
+                {
+                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv}  ");
+                    Console.Write("\nDa li ste sigurni da zelite da izbrisete odabrani namestaj [d/n]: ");
+                    var izbor = Console.ReadLine();
+                    if (izbor == "")
+                    {
+                        Console.WriteLine("Niste uneli nista!");
+                        return;
+                    }
+                    else if (izbor == "n")
+                    {
+                        Console.WriteLine("Niste obrisali namestaj.");
+                        return;
+                    }
+                    else if (izbor == "d")
+                    {
+                        Namestaj.Remove(Namestaj[i]);
+                        Namestaj[i].Id --;
+                        Console.WriteLine("\nUspesno ste obrisali namestaj.");
+                    }
+                }
+            }
+        }
+
         private static void IzmeniNamestaj()
         {
-            Console.WriteLine("====== IZMENA NAMESTAJA =====");
-
+            Console.WriteLine("\n====== IZMENA NAMESTAJA =====");
+            Console.Write("Unesite ID namestaja koji zelite da izmenite: ");
+            int Id = int.Parse(Console.ReadLine());
+            for (int i = 0; i < Namestaj.Count; i++)
+            {                
+                if (Namestaj[i].Id == Id)
+                {
+                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv}  ");
+                    Console.Write("Unesite novi naziv: ");
+                    string noviNaziv = Console.ReadLine();
+                    Console.Write("Unesite novu cenu: ");
+                    double novaCena = double.Parse(Console.ReadLine());
+                    Namestaj[i].Naziv = noviNaziv;
+                    Namestaj[i].Cena = novaCena;
+                    Console.WriteLine("\nUspesno ste izvrsili izmene.");
+                    break;
+                }                
+            }
         }
 
         private static void DodajNamestaj()
         {
-            Console.WriteLine("===== DODAVANJE NOVOG NAMESTAJA =====");
+            Console.WriteLine("\n===== DODAVANJE NOVOG NAMESTAJA =====");
 
             Console.Write("Unesite naziv: ");
             string naziv = Console.ReadLine();
@@ -154,6 +224,7 @@ namespace POP
                 TipNamestaja = trazeniTipNamestaja
             };
             Namestaj.Add(noviNamestaj);
+            Console.WriteLine("Uspesno ste dodali namestaj.");
         }
         
 
@@ -168,7 +239,7 @@ namespace POP
             {
                 Console.WriteLine($"{ i + 1}. naziv: { Namestaj[i].Naziv }, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv} ");
             }
-            NamestajMeni();
+            //NamestajMeni();
         }
 
         private static void IspisiCRUDMeni()

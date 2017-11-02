@@ -18,6 +18,7 @@ namespace POP.Model
         public string Prezime  { get; set; }
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
+        public TipKorisnika TipKorisnika { get; set; }
         public bool Obrisan { get; set; }
     }
 }

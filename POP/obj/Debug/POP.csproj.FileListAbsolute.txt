@@ -5,3 +5,10 @@ c:\users\user\source\repos\POP\POP\bin\Debug\POP.exe
 c:\users\user\source\repos\POP\POP\bin\Debug\POP.pdb
 c:\users\user\source\repos\POP\POP\obj\Debug\POP.exe
 c:\users\user\source\repos\POP\POP\obj\Debug\POP.pdb
+C:\POP-SF6\POP\bin\Debug\POP.exe.config
+C:\POP-SF6\POP\bin\Debug\POP.exe
+C:\POP-SF6\POP\bin\Debug\POP.pdb
+C:\POP-SF6\POP\obj\Debug\POP.csprojResolveAssemblyReference.cache
+C:\POP-SF6\POP\obj\Debug\POP.csproj.CoreCompileInputs.cache
+C:\POP-SF6\POP\obj\Debug\POP.exe
+C:\POP-SF6\POP\obj\Debug\POP.pdb

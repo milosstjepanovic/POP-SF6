@@ -18,9 +18,6 @@ namespace POP.Model
         public int MaticniBroj { get; set; }
         public string BrojZiroRacuna { get; set; }
         public bool Obrisan { get; set; }
-        public void Save()
-        {
-
-        }
+        
     }
 }

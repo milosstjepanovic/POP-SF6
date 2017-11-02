@@ -14,7 +14,7 @@ namespace POP.Model
         public int KolicinaUMagacinu { get; set; }
         public TipNamestaja TipNamestaja { get; set; }
         public int Kolicina { get; set; }
-        public object Akcija { get; internal set; }
-        
+        public Akcija Akcija { get; set; }
+        public bool Obrisan { get; set; }        
     }
 }
