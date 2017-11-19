@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP", "POP\POP.csproj", "{EFADE209-706E-4057-BBC3-48F600494246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP-SF-06-2016-GUI", "POP-SF-06-2016-GUI\POP-SF-06-2016-GUI.csproj", "{F75DFB13-8DFA-414A-8765-B80B8CB5B2A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFADE209-706E-4057-BBC3-48F600494246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFADE209-706E-4057-BBC3-48F600494246}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFADE209-706E-4057-BBC3-48F600494246}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFADE209-706E-4057-BBC3-48F600494246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75DFB13-8DFA-414A-8765-B80B8CB5B2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75DFB13-8DFA-414A-8765-B80B8CB5B2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75DFB13-8DFA-414A-8765-B80B8CB5B2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75DFB13-8DFA-414A-8765-B80B8CB5B2A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Korisnik>
+    <Id>1</Id>
+    <Ime>Milos</Ime>
+    <Prezime>Stjepanovic</Prezime>
+    <KorisnickoIme>miki</KorisnickoIme>
+    <Lozinka>miki123</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <Id>2</Id>
+    <Ime>Janko</Ime>
+    <Prezime>Jankovic</Prezime>
+    <KorisnickoIme>janko</KorisnickoIme>
+    <Lozinka>janko123</Lozinka>
+    <TipKorisnika>Administrator</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <Id>3</Id>
+    <Ime>Nikola</Ime>
+    <Prezime>Nikolic</Prezime>
+    <KorisnickoIme>nikola</KorisnickoIme>
+    <Lozinka>123</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+</ArrayOfKorisnik>

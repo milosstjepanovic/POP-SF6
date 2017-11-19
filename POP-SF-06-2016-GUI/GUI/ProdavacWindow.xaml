@@ -1,0 +1,13 @@
+﻿<Window x:Class="POP_SF_06_2016_GUI.GUI.ProdavacWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
+        mc:Ignorable="d"
+        Title="ProdavacWindow" Height="300" Width="501.951">
+    <Grid>
+        <Button Content="Izlaz" HorizontalAlignment="Left" Margin="399,241,0,0" VerticalAlignment="Top" Width="75" Name="btnIzlaz" Click="btnIzlaz_Click"/>
+
+    </Grid>
+</Window>

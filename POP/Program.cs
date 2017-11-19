@@ -1,5 +1,6 @@
 ﻿using POP.Model;
 using POP.Tests;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,6 @@ namespace POP
             {
                 Id = 1,
                 Cena = 777,
-                TipNamestaja = tp1,
                 Naziv = "Ekstra krevet",
             };
 
@@ -51,15 +51,63 @@ namespace POP
             {
                 Id = 2,
                 Cena = 9000,
-                TipNamestaja = tp1,
                 Naziv = "Bracni krevet",
             };
 
-            Namestaj.Add(n1);
-            Namestaj.Add(n2);
+            //Namestaj.Add(n1);
+            //Namestaj.Add(n2);
 
             TipoviNamestaja.Add(tp1);
             TipoviNamestaja.Add(tp2);
+
+            /* var listaNamestaja = new List<Namestaj>();
+            listaNamestaja.Add(n1);
+
+            GenericSerializer.Serialize<Namestaj>("namestaj.xml", listaNamestaja);
+
+            //moze i var listaNamestaja
+            listaNamestaja = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+
+
+            var listaTipovaNamestaja = new List<TipNamestaja>();
+            listaTipovaNamestaja.Add(tp1);
+            listaTipovaNamestaja.Add(tp2);
+            GenericSerializer.Serialize<TipNamestaja>("tipovi_namestaja.xml", listaTipovaNamestaja); */
+
+
+            var listaTipovaNamestaja = Projekat.Instance.TipoviNamestaja;
+
+            //listaTipovaNamestaja.RemoveAt();   za brisanje
+
+            var noviTipNamestaja = new TipNamestaja()
+            {
+                Id = listaTipovaNamestaja.Count + 1,
+                Naziv = "Ugaona"
+            };
+
+            listaTipovaNamestaja.Add(noviTipNamestaja);
+            Projekat.Instance.TipoviNamestaja = listaTipovaNamestaja;
+
+
+            var listaNamestaja = Projekat.Instance.Namestaj;
+            var prviNamestaj = listaNamestaja[0];
+
+            var trazeniTipNamestaja = TipNamestaja.GetById(prviNamestaj.TipNamestajaId);
+
+            /*listaTipovaNamestaja = Projekat.Instance.TipoviNamestaja;
+            TipNamestaja trazeniTipNamestaja = null;
+            foreach (var tipNamestaja in listaTipovaNamestaja)
+            {
+                if (tipNamestaja.Id = prviNamestaj.TipNamestajaId)
+                {
+                    trazeniTipNamestaja = tipNamestaja;
+                    break;
+                }
+            }*/
+            Console.WriteLine($"naziv: {prviNamestaj.Naziv}");
+
+
+            Console.WriteLine("FInished serialization.....");
 
 
             Console.WriteLine($"==== Dobro dosli u salon namestaja { s1.Naziv}. ====");
@@ -149,7 +197,7 @@ namespace POP
             {
                 if (Namestaj[i].Id == Id)
                 {
-                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv}  ");
+                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestajaId}  ");
                     Console.Write("\nDa li ste sigurni da zelite da izbrisete odabrani namestaj [d/n]: ");
                     var izbor = Console.ReadLine();
                     if (izbor == "")
@@ -165,7 +213,7 @@ namespace POP
                     else if (izbor == "d")
                     {
                         Namestaj.Remove(Namestaj[i]);
-                        Namestaj[i].Id --;
+                        //Namestaj[i].Id --;
                         Console.WriteLine("\nUspesno ste obrisali namestaj.");
                     }
                 }
@@ -181,7 +229,7 @@ namespace POP
             {                
                 if (Namestaj[i].Id == Id)
                 {
-                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv}  ");
+                    Console.WriteLine($"Izabrali ste: {Namestaj[i].Naziv}, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestajaId}  ");
                     Console.Write("Unesite novi naziv: ");
                     string noviNaziv = Console.ReadLine();
                     Console.Write("Unesite novu cenu: ");
@@ -221,7 +269,7 @@ namespace POP
                 Id = Namestaj.Count + 1,
                 Naziv = naziv,
                 Cena = cena,
-                TipNamestaja = trazeniTipNamestaja
+                //TipNamestaja = trazeniTipNamestaja
             };
             Namestaj.Add(noviNamestaj);
             Console.WriteLine("Uspesno ste dodali namestaj.");
@@ -237,7 +285,7 @@ namespace POP
 
             for (int i = 0; i < Namestaj.Count; i++)
             {
-                Console.WriteLine($"{ i + 1}. naziv: { Namestaj[i].Naziv }, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestaja.Naziv} ");
+                Console.WriteLine($"{ i + 1}. naziv: { Namestaj[i].Naziv }, cena: { Namestaj[i].Cena}, tip namestaja: { Namestaj[i].TipNamestajaId} ");
             }
             //NamestajMeni();
         }

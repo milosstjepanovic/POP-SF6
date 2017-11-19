@@ -12,7 +12,7 @@ namespace POP.Model
         public string Naziv { get; set; }
         public double Cena { get; set; }
         public int KolicinaUMagacinu { get; set; }
-        public TipNamestaja TipNamestaja { get; set; }
+        public int TipNamestajaId { get; set; }
         public int Kolicina { get; set; }
         public Akcija Akcija { get; set; }
         public bool Obrisan { get; set; }        

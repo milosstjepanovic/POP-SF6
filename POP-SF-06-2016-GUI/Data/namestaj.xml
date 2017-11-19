@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Namestaj>
+    <Id>1</Id>
+    <Naziv>Ekstra krevet</Naziv>
+    <Cena>5500</Cena>
+    <KolicinaUMagacinu>3</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>2</Id>
+    <Naziv>Novi</Naziv>
+    <Cena>1300</Cena>
+    <KolicinaUMagacinu>20</KolicinaUMagacinu>
+    <TipNamestajaId>0</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Naziv>Danas</Naziv>
+    <Cena>2500</Cena>
+    <KolicinaUMagacinu>22</KolicinaUMagacinu>
+    <TipNamestajaId>0</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>4</Id>
+    <Naziv>NovaSofa izmenjen</Naziv>
+    <Cena>2500</Cena>
+    <KolicinaUMagacinu>5</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>5</Id>
+    <Naziv>jug03</Naziv>
+    <Cena>1200</Cena>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <TipNamestajaId>0</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>6</Id>
+    <Naziv>sofa123</Naziv>
+    <Cena>500</Cena>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
+</ArrayOfNamestaj>

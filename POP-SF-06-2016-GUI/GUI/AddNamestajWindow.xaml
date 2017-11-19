@@ -1,0 +1,41 @@
+﻿<Window x:Class="POP_SF_06_2016_GUI.GUI.AddNamestajWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="AddNamestajWindow" Height="310.832" Width="374.952">
+    <Grid Margin="0,0,-0.2,4.2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="94*"/>
+            <ColumnDefinition Width="275*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"></RowDefinition>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="35*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="0,0,9.6,3.4">Naziv:</Label>
+        <Label Grid.Column="0" Margin="0,1.6,0.6,4.4" Grid.Row="1" >Cena:</Label>
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,0.6,0.6,2.4" Grid.RowSpan="2">Kolicina:</Label>
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,0,0.6,2.4" >Tip namestaja:</Label>
+        <TextBox Grid.Row="0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="3.4,0,0,0" 
+                 Grid.Column="1" Name="tbNaziv"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.4,0.6,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 Width="138" Name="tbCena" Grid.Row="1"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.4,0.6,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 Width="138" Name="tbKolicina" Grid.Row="2"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="138" Margin="4.4,0,0,0"
+                  Name="cmbTipNamestaja"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnSacuvaj" Click="btnSacuvaj_Click" Grid.Column="1" Width="60" Height="Auto" Margin="0,0.6,133.8,9.6" 
+                Grid.Row="4">Sacuvaj</Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnIzlaz" Click="btnIzlaz_Click" Grid.Column="1" Margin="0,0.6,30.8,9.6" Width="55" Height="Auto"
+                Grid.Row="4">Zatvori</Button>
+
+
+    </Grid>
+
+
+</Window>
