@@ -1,6 +1,7 @@
 ﻿using POP.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,20 +21,20 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class KorisnikWindow : Window
     {
+        private ICollectionView view;
+
+        public Korisnik IzabraniKorisnik { get; set; }
+
         public KorisnikWindow()
         {
             InitializeComponent();
-            OsveziPrikaz();
-        }
 
-        private void OsveziPrikaz()
-        {
-            lbKorisnik.Items.Clear();
-            foreach (var korisnik in Projekat.Instance.Korisnik)
-            {
-                lbKorisnik.Items.Add(korisnik);
-            }
-            lbKorisnik.SelectedIndex = 0;
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+
+            dgKorisnik.ItemsSource = view;
+            dgKorisnik.DataContext = this;
+            dgKorisnik.IsSynchronizedWithCurrentItem = true;
+            dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void btnDodajKorisnika_Click(object sender, RoutedEventArgs e)
@@ -46,18 +47,18 @@ namespace POP_SF_06_2016_GUI.GUI
                 Lozinka = ""
             };
             var korisnikProzor = new AddChangeKorisnikWindow(prazanKorisnik, AddChangeKorisnikWindow.TipOperacije.DODAVANJE);
-            korisnikProzor.ShowDialog();
-            OsveziPrikaz();
-            
+            korisnikProzor.ShowDialog();             
         }
 
         private void btnIzmeniKorisnika_Click(object sender, RoutedEventArgs e)
         {
-            var izabraniKorisnik = (Korisnik)lbKorisnik.SelectedItem;
+            //var izabraniKorisnik = (Korisnik)dgKorisnik.SelectedItem;
 
-            var korisnikProzor = new AddChangeKorisnikWindow(izabraniKorisnik, AddChangeKorisnikWindow.TipOperacije.IZMENA);
+            Korisnik kopijaKorisnika = (Korisnik)IzabraniKorisnik.Clone();
+
+
+            var korisnikProzor = new AddChangeKorisnikWindow(kopijaKorisnika, AddChangeKorisnikWindow.TipOperacije.IZMENA);
             korisnikProzor.ShowDialog();
-            OsveziPrikaz();
         }
 
         private void btnObrisiKorisnika_Click(object sender, RoutedEventArgs e)
@@ -68,6 +69,22 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnIzlaz_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void dgKorisnik_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+           
+            string sakrijKolone = (string)e.Column.Header;
+            if (sakrijKolone == "Id")
+            {
+                //e.Column["Obrisan"] = 
+                e.Cancel = true;
+            }
+            if (sakrijKolone == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+            
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<Window x:Class="POP_SF_06_2016_GUI.GUI.AkcijaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
+        mc:Ignorable="d"
+        Title="AkcijaWindow" Height="373.2" Width="537">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="278*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="dgAkcija" HorizontalAlignment="Left" Height="269" VerticalAlignment="Top" Width="518" IsReadOnly="True" CanUserAddRows="False" 
+                  AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn"/>
+        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
+        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Margin="88,13.2,0,12.8" Name="btnIzmeniAkciju" 
+                Click="btnIzmeniAkciju_Click">Izmeni akciju</Button>
+        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Margin="182,13.2,0,12.8" Name="btnObrisiAkciju" 
+                Click="btnObrisiAkciju_Click">Obrisi akciju</Button>
+        <Button Grid.Row="1" Width="48" Height="30" HorizontalAlignment="Right" Margin="0,13.2,0.4,12.8" Name="btnIzlaz" 
+                Click="btnIzlaz_Click">Izlaz</Button>
+
+    </Grid>
+</Window>

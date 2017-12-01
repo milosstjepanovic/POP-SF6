@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="350" Width="525">
+        Title="TipNamestajaWindow" Height="369.406" Width="510.446">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="265*"/>
-            <RowDefinition Height="56*"/>
+            <RowDefinition Height="139*"/>
+            <RowDefinition Height="31*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" x:Name="lbTipoviNamestaja" HorizontalAlignment="Left" 
-                 Height="265" VerticalAlignment="Top" Width="518" Grid.RowSpan="2"/>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click">Dodaj tip namestaja</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="123,13.2,0,12.8">Izmeni tip namestaja</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="252,13.2,0,12.8">Obrisi tip namestaja</Button>
-        <Button Grid.Row="1" Width="48" Height="30" HorizontalAlignment="Right" 
-                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,13.2,0.4,12.8">Izlaz</Button>
+        <DataGrid AutoGenerateColumns="True" AutoGeneratingColumn="dgTipoviNamestaja_AutoGeneratingColumn" Grid.Row="0" x:Name="dgTipoviNamestaja" HorizontalAlignment="Left" 
+                 Height="265" VerticalAlignment="Top" Width="494" IsReadOnly="True" CanUserAddRows="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}"/>
+        <Button Grid.Row="1" Width="109" HorizontalAlignment="Left" 
+                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,8.6,0,21">Dodaj tip namestaja</Button>
+        <Button Grid.Row="1" Width="114" HorizontalAlignment="Left" 
+                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="123,8.6,0,21">Izmeni tip namestaja</Button>
+        <Button Grid.Row="1" Width="109" HorizontalAlignment="Left" 
+                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="252,8.6,0,21">Obrisi tip namestaja</Button>
+        <Button Grid.Row="1" Width="48" HorizontalAlignment="Right" 
+                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,8.6,3,21">Izlaz</Button>
     </Grid>
 </Window>

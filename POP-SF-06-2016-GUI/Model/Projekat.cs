@@ -1,6 +1,7 @@
 ﻿using POP.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,23 @@ namespace POP.Model
     {
         public static Projekat Instance { get; private set; } = new Projekat();
 
-        private List<TipNamestaja> tipoviNamestaja;
-        private List<Namestaj> namestaj;
-        private List<Korisnik> korisnik;
+        public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
+        public ObservableCollection<Namestaj> Namestaj { get; set; }
+        public ObservableCollection<Korisnik> Korisnik { get; set; }
+        public ObservableCollection<Akcija> Akcija { get; set; }
 
+        private Projekat()
+        {
+            TipoviNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
+            Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+            Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
+            Akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
+        }
+        
+        /*
         public List<TipNamestaja> TipoviNamestaja
         {
-            get
-            {
-                tipoviNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
-                return tipoviNamestaja;
-            }
-            set
-            {
-                tipoviNamestaja = value;
-                GenericSerializer.Serialize<TipNamestaja>("tipovi_namestaja.xml", tipoviNamestaja);
-            }
+            
         }
 
         public List<Namestaj> Namestaj
@@ -56,5 +58,19 @@ namespace POP.Model
                 GenericSerializer.Serialize<Korisnik>("korisnik.xml", korisnik);
             }
         }
+
+        public List<Akcija> Akcija
+        {
+            get
+            {
+                akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
+                return akcija;
+            }
+            set
+            {
+                akcija = value;
+                GenericSerializer.Serialize<Akcija>("akcija.xml", akcija);
+            }
+        }*/
     }
 }

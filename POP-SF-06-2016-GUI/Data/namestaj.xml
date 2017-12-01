@@ -10,7 +10,7 @@
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
-    <Naziv>Novi</Naziv>
+    <Naziv>Novi izmenjen</Naziv>
     <Cena>1300</Cena>
     <KolicinaUMagacinu>20</KolicinaUMagacinu>
     <TipNamestajaId>0</TipNamestajaId>
@@ -38,7 +38,7 @@
     <Cena>1200</Cena>
     <KolicinaUMagacinu>0</KolicinaUMagacinu>
     <TipNamestajaId>0</TipNamestajaId>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>6</Id>

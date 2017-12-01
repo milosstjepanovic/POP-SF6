@@ -1,6 +1,8 @@
 ﻿using POP.Model;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,24 +22,44 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class NamestajWindow : Window
     {
+        private ICollectionView view;
+
+        public Namestaj IzabraniNamestaj { get; set; }
+        
         public NamestajWindow()
         {
             InitializeComponent();
-            OsveziPrikaz();
+
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            view.Filter = FilterNeobrisanogNamestaja;
+
+            dgNamestaj.ItemsSource = view;
+            dgNamestaj.DataContext = this;
+            dgNamestaj.IsSynchronizedWithCurrentItem = true;
+            dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
         }
 
-        private void OsveziPrikaz()
+        private bool FilterNeobrisanogNamestaja(object obj)
         {
-            lbNamestaj.Items.Clear();
-            foreach (var namestaj in Projekat.Instance.Namestaj)
+            //1.
+            /*
+            if(((Namestaj).obj).Obrisan == false)
             {
-                if (namestaj.Obrisan == false)
-                {
-                    lbNamestaj.Items.Add(namestaj);
-                }
-                
-            };
-            lbNamestaj.SelectedIndex = 0;
+                return true; //treba da se prikaze zadovoljava kriterijum
+            }
+            else
+            {
+                return false;
+            }
+            */
+
+            //2. nacin
+            return ((Namestaj)obj).Obrisan == false;
+
+            //3.
+            //return !((Namestaj).obj).Obrisan;
+            
         }
 
         private void btnDodajNamestaj_Click(object sender, RoutedEventArgs e)
@@ -50,21 +72,24 @@ namespace POP_SF_06_2016_GUI.GUI
             };
             var namestajProzor = new AddNamestajWindow(prazanNamestaj, AddNamestajWindow.TipOperacije.DODAVANJE);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
-        }
+            }
 
         private void btnIzmeniNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
 
-            var namestajProzor = new AddNamestajWindow(izabraniNamestaj, AddNamestajWindow.TipOperacije.IZMENA);
+            // vise ne treba
+            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
+
+            Namestaj kopijaNamestaja = (Namestaj)IzabraniNamestaj.Clone();
+
+
+            var namestajProzor = new AddNamestajWindow(kopijaNamestaja, AddNamestajWindow.TipOperacije.IZMENA);
             namestajProzor.ShowDialog();
-            OsveziPrikaz();
-        }
+           }
 
         private void btnObrisiNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            var namestajZaBrisanje = (Namestaj)lbNamestaj.SelectedItem;
+            var namestajZaBrisanje = (Namestaj)dgNamestaj.SelectedItem;
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete namestaj: { namestajZaBrisanje.Naziv}?",
                 "Brisanje namestaja", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -76,12 +101,11 @@ namespace POP_SF_06_2016_GUI.GUI
                     if (namestaj.Id == namestajZaBrisanje.Id)
                     {
                         namestaj.Obrisan = true;
+                        view.Refresh();
                     }
                 }
-
-                Projekat.Instance.Namestaj = lista;
-                OsveziPrikaz();
-            }
+                GenericSerializer.Serialize("namestaj.xml", lista);                               
+                }
         }
 
         private void btnIzlaz_Click(object sender, RoutedEventArgs e)
@@ -89,6 +113,14 @@ namespace POP_SF_06_2016_GUI.GUI
             Close();
         }
 
-        
+        private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            
+            string sakrijKolone = (string)e.Column.Header;
+            if (sakrijKolone == "Id" || sakrijKolone == "TipNamestajaId" || sakrijKolone == "Obrisan")
+            {                
+                e.Cancel = true;
+            }            
+        }
     }
 }

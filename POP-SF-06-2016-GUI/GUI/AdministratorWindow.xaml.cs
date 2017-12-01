@@ -19,9 +19,30 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class AdministratorWindow : Window
     {
-        public AdministratorWindow()
+        public enum Stanje
+        {
+            Administracija,
+            Prodaja
+        };
+
+        public Stanje stanje;
+
+        public AdministratorWindow(Stanje stanje)
         {
             InitializeComponent();
+            this.stanje = stanje;
+
+            if (stanje == Stanje.Administracija)
+            {
+                btnProdaja.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                btnAkcije.Visibility = System.Windows.Visibility.Collapsed;
+                btnNamestaj.Visibility = System.Windows.Visibility.Collapsed;
+                btnKorisnici.Visibility = System.Windows.Visibility.Collapsed;
+                btnTipoviNamestaja.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void btnKorisnici_Click(object sender, RoutedEventArgs e)
@@ -38,13 +59,19 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnAkcije_Click(object sender, RoutedEventArgs e)
         {
-
+            var prozorAkcija = new AkcijaWindow();
+            prozorAkcija.ShowDialog();
         }
 
         private void btnTipoviNamestaja_Click(object sender, RoutedEventArgs e)
         {
             var prozorTipoviNamestaja = new TipNamestajaWindow();
             prozorTipoviNamestaja.ShowDialog();
+        }
+
+        private void btnProdaja_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

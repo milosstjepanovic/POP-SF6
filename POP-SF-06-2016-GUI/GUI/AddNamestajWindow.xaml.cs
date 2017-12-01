@@ -1,4 +1,5 @@
 ﻿using POP.Model;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,23 +44,12 @@ namespace POP_SF_06_2016_GUI.GUI
             this.namestaj = namestaj;
             this.operacija = operacija;
 
-            tbNaziv.Text = namestaj.Naziv;
-            tbCena.Text = Convert.ToString(namestaj.Cena);
-            tbKolicina.Text = Convert.ToString(namestaj.KolicinaUMagacinu);  
-            
-            foreach (var idNamestaja in Projekat.Instance.TipoviNamestaja)
-            {
-                cmbTipNamestaja.Items.Add(idNamestaja);
-            }
-
-            foreach (TipNamestaja tipNamestaja in cmbTipNamestaja.Items)
-            {
-                if (tipNamestaja.Id == namestaj.TipNamestajaId)
-                {
-                    cmbTipNamestaja.SelectedItem = tipNamestaja;
-                    break;
-                }
-            }
+            //gde treba da gleda kad bude menjao text box naziv
+            tbNaziv.DataContext = namestaj;
+            tbCena.DataContext = namestaj;
+            tbKolicina.DataContext = namestaj;
+            cmbTipNamestaja.ItemsSource = Projekat.Instance.TipoviNamestaja;
+            cmbTipNamestaja.DataContext = namestaj;
 
         }
 
@@ -82,6 +72,7 @@ namespace POP_SF_06_2016_GUI.GUI
                         Id = listaNamestaja.Count + 1,
                         Naziv = tbNaziv.Text,
                         Cena = Double.Parse(tbCena.Text),
+                        KolicinaUMagacinu = int.Parse(tbKolicina.Text),
                         TipNamestajaId = izabraniTipNamestaja.Id
                         
                     };
@@ -101,21 +92,14 @@ namespace POP_SF_06_2016_GUI.GUI
                             n.TipNamestajaId = izabraniTipNamestaja.Id;
                             break;
                         }
-                    }
-                    
-                    /*
-                    namestajZaIzmenu.Naziv = tbNaziv.Text;
-                    namestajZaIzmenu.Cena = Double.Parse(tbCena.Text);
-                    namestajZaIzmenu.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
-                    namestajZaIzmenu.TipNamestajaId = cmbTipNamestaja.SelectedItem
-                    */
+                    }               
                     break;
                 default:
                     break;
             }          
             
             //cuvaj u disk
-            Projekat.Instance.Namestaj = listaNamestaja;
+            GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
 
             Close();
         }

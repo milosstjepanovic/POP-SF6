@@ -41,37 +41,23 @@ namespace POP_SF_06_2016_GUI.GUI
             this.korisnik = korisnik;
             this.operacija = operacija;
 
-            tbIme.Text = korisnik.Ime;
-            tbPrezime.Text = korisnik.Prezime;
-            tbKorIme.Text = korisnik.KorisnickoIme;
-            tbLozinka.Text = korisnik.Lozinka;
-            cmbTipKorisnika.Items.Add(korisnik.TipKorisnika);
-            //cmbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
-            
-            foreach (var idKorisnika in Projekat.Instance.Korisnik)
-            {
-                cmbTipKorisnika.Items.Add(idKorisnika.TipKorisnika);
-            }
-            
-            /*
-            foreach (var tipKorisnika in Projekat.Instance.Korisnik)
-            {
-                if (tipKorisnika.TipKorisnika.ToString() == TipKorisnika.Administrator.ToString())
-                {
-                    cmbTipKorisnika.SelectedItem = TipKorisnika.Administrator;
-                    break;
-                }
-                else
-                    cmbTipKorisnika.SelectedItem = TipKorisnika.Prodavac;
-                    //break;
-            }
-            */
-            
+            tbIme.DataContext = korisnik;
+            tbPrezime.DataContext = korisnik;
+            tbKorIme.DataContext = korisnik;
+            tbLozinka.DataContext = korisnik;          
+            cmbTipKorisnika.ItemsSource = Enum.GetValues(typeof(TipKorisnika));
+            cmbTipKorisnika.DataContext = korisnik;
+
         }
 
         private void btnZatvori_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

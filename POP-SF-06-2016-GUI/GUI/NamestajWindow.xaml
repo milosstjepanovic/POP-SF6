@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="350" Width="525">
+        Title="NamestajWindow" Height="369.2" Width="556.2">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="265*"/>
-            <RowDefinition Height="56*"/>
+            <RowDefinition Height="271*"/>
+            <RowDefinition Height="69*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" x:Name="lbNamestaj" HorizontalAlignment="Left" 
-                 Height="265" VerticalAlignment="Top" Width="518" Grid.RowSpan="2"/>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click">Dodaj namestaj</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="109,13.2,0,12.8">Izmeni namestaj</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" 
-                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="227,13.2,0,12.8">Obrisi namestaj</Button>
-        <Button Grid.Row="1" Width="48" Height="30" HorizontalAlignment="Right" 
-                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,13.2,0.4,12.8">Izlaz</Button>
+        <DataGrid Grid.Row="0" x:Name="dgNamestaj" HorizontalAlignment="Left" SelectedItem="{Binding Path=IzabraniNamestaj}"
+                 Height="265" VerticalAlignment="Top" Width="532" AutoGenerateColumns="True" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" 
+                  IsReadOnly="True" CanUserAddRows="False"/>
+        <Button Grid.Row="1" Width="86" HorizontalAlignment="Left" 
+                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,14.8,0,17">Dodaj namestaj</Button>
+        <Button Grid.Row="1" Width="96" HorizontalAlignment="Left" 
+                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="109,15.8,0,16">Izmeni namestaj</Button>
+        <Button Grid.Row="1" Width="86" HorizontalAlignment="Left" 
+                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="227,15.8,0,16">Obrisi namestaj</Button>
+        <Button Grid.Row="1" Width="72" HorizontalAlignment="Right" 
+                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,15.8,9.6,16">Izlaz</Button>
     </Grid>
 </Window>
