@@ -9,57 +9,52 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class LoginWindow : Window
     {
-        //private Korisnik korisnik;
+        public static string prijavljeniKorisnik { set; get; }
 
         public LoginWindow()
         {
             InitializeComponent();
-            //this.korisnik = korisnik;
-        }
-        //int brojac = 0;
-
-        //public int Brojac { get => brojac; set => brojac = value; }
-
-        private void btnPrijaviSe_Click(object sender, RoutedEventArgs e)
-        {
-            var listaKorisnika = Projekat.Instance.Korisnik;
+            tbKorisnickoIme.Focus();
             
+        }
+        
+        private void btnPrijaviSe_Click(object sender, RoutedEventArgs e)
+        {        
+            var listaKorisnika = Projekat.Instance.Korisnik;
+
             foreach (var korisnik in Projekat.Instance.Korisnik)
             {
-                
-                if (tbKorisnickoIme.Text.Equals(korisnik.KorisnickoIme) && pbLozinka.Password.Equals(korisnik.Lozinka) && 
-                    korisnik.TipKorisnika.ToString().Equals("Administrator") && korisnik.Obrisan != true)
+                var korisnickoIme = tbKorisnickoIme.Text.Trim();
+                var lozinka = pbLozinka.Password.Trim();
+
+                if (korisnickoIme == "" || lozinka == "")
+                {
+                    MessageBox.Show("Morate uneti sve podatke!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                else if (korisnickoIme == korisnik.KorisnickoIme && lozinka == korisnik.Lozinka && korisnik.TipKorisnika.ToString().Equals("Administrator") 
+                        && korisnik.Obrisan != true)
                 {
                     var adminProzor = new AdministratorWindow(Stanje.Administracija);
                     adminProzor.ShowDialog();
+                    tbKorisnickoIme.Clear();
+                    pbLozinka.Clear();
+                    tbKorisnickoIme.Focus();
                     return;
                 }
-                else if (tbKorisnickoIme.Text.Equals(korisnik.KorisnickoIme) && pbLozinka.Password.Equals(korisnik.Lozinka) && 
-                    korisnik.TipKorisnika.ToString().Equals("Prodavac") && korisnik.Obrisan != true)
+                else if (korisnickoIme == korisnik.KorisnickoIme && lozinka == korisnik.Lozinka && korisnik.TipKorisnika.ToString().Equals("Prodavac")
+                        && korisnik.Obrisan != true)
                 {
                     var adminProzor = new AdministratorWindow(Stanje.Prodaja);
                     adminProzor.ShowDialog();
+                    tbKorisnickoIme.Clear();
+                    pbLozinka.Clear();
+                    tbKorisnickoIme.Focus();
                     return;
                 }
-                /*
-                else if (Brojac == 2)
-                {
-                    MessageBox.Show("Pogresili ste previse puta. Aplikacija ce se zatvoriti!", "Greska", MessageBoxButton.OK);
-                    this.Close();
-                    return;
-                    
-                }
-                */
-                else if ((tbKorisnickoIme.Text.Equals("") || pbLozinka.Password.Equals("")) || (tbKorisnickoIme.Text != korisnik.KorisnickoIme || pbLozinka.Password != korisnik.Lozinka))
-                {
-                    MessageBox.Show("Niste popunili sva polja ili ste uneli pogresne podatke!", "Greska", MessageBoxButton.OK);
-                    //Brojac++;
-                    //tbKorisnickoIme.Focus();
-                    //break;
-                    return;
-                }
-                
-            }    
+            }
+            MessageBox.Show("Uneti podaci nisu tacni", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
         }
 
         private void btnOdustani_Click(object sender, RoutedEventArgs e)

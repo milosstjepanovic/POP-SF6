@@ -1,4 +1,5 @@
 ﻿using POP.Model;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,8 @@ namespace POP_SF_06_2016_GUI.GUI
     {
         private ICollectionView view;
 
+        public Akcija IzabranaAkcija { get; set; }
+
         public AkcijaWindow()
         {
             InitializeComponent();
@@ -37,31 +40,56 @@ namespace POP_SF_06_2016_GUI.GUI
 
         }
 
-        private void NovaAkcija()
-        {
-            var novaAkcija = new Akcija()
-            {
-                Id = 2,
-                Popust = 30,
-                DatumPocetka = new DateTime(),
-                DatumZavrsetka = new DateTime()
-            };
-            var listaAkcija = Projekat.Instance.Akcija;
-        }
-       
         private void btnDodajAkciju_Click(object sender, RoutedEventArgs e)
         {
-
+            var praznaAkcija = new Akcija()
+            {
+                Popust = 0,
+                DatumPocetka = DateTime.Now,
+                DatumZavrsetka = DateTime.Now
+            };
+            var akcijaProzor = new AddChangeAkcijaWindow(praznaAkcija, AddChangeAkcijaWindow.TipOperacije.DODAVANJE);
+            akcijaProzor.ShowDialog();
         }
 
         private void btnIzmeniAkciju_Click(object sender, RoutedEventArgs e)
         {
+            if (IzabranaAkcija == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            Akcija kopijaAkcija = (Akcija)IzabranaAkcija.Clone();
+
+            var akcijaProzor = new AddChangeAkcijaWindow(kopijaAkcija, AddChangeAkcijaWindow.TipOperacije.IZMENA);
+            akcijaProzor.ShowDialog();
         }
 
         private void btnObrisiAkciju_Click(object sender, RoutedEventArgs e)
         {
+            var akcijaZaBrisanje = (Akcija)dgAkcija.SelectedItem;
+            if (akcijaZaBrisanje == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete namestaj: { akcijaZaBrisanje.Popust}?",
+                "Brisanje namestaja", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                var lista = Projekat.Instance.Akcija;
+
+                foreach (var akcija in lista)
+                {
+                    if (akcija.Id == akcijaZaBrisanje.Id)
+                    {
+                        akcija.Obrisan = true;
+                        view.Refresh();
+                    }
+                }
+                GenericSerializer.Serialize("akcija.xml", lista);
+            }
         }
 
         private void btnIzlaz_Click(object sender, RoutedEventArgs e)
@@ -71,7 +99,7 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "Obrisan")
+            if (e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "Obrisan" || e.Column.Header.ToString() == "NamestajId")
             {
                 e.Cancel = true;
             }

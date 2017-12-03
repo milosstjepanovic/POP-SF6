@@ -15,7 +15,7 @@ namespace POP.Model
         private double cena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
-        private Akcija akcija;
+        //private Akcija akcija;
         private bool obrisan;
         private TipNamestaja tipNamestaja;
 
@@ -89,15 +89,15 @@ namespace POP.Model
             }
         }      
 
-        public Akcija Akcija
-        {
-            get { return akcija; }
-            set
-            {
-                akcija = value;
-                OnPropertyChanged("Akcija");
-            }
-        }        
+        //public Akcija Akcija
+        //{
+        //    get { return akcija; }
+        //    set
+        //    {
+        //        akcija = value;
+        //        OnPropertyChanged("Akcija");
+        //    }
+        //}        
 
         public bool Obrisan
         {
@@ -131,7 +131,9 @@ namespace POP.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaId).Naziv }";
+            //return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaId).Naziv }";
+            return $"{Naziv}";
+
         }
 
         protected void OnPropertyChanged(string propertyName)

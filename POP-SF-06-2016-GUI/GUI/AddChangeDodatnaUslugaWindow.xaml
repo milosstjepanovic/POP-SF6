@@ -1,0 +1,22 @@
+﻿<Window x:Class="POP_SF_06_2016_GUI.GUI.AddChangeDodatnaUslugaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
+        mc:Ignorable="d"
+        Title="AddChangeDodatnaUslugaWindow" Height="275.467" Width="358.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="65,50,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Cena:" HorizontalAlignment="Left" Margin="65,90,0,0" VerticalAlignment="Top" Width="58"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="142,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 Name="tbNaziv" Text="{Binding Path=Naziv}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="142,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 Name="tbCena" Text="{Binding Path=Cena}"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="65,164,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj"
+                Click="btnSacuvaj_Click"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="187,164,0,0" VerticalAlignment="Top" Width="75" Name="btnIzlaz"
+                Click="btnIzlaz_Click"/>
+
+    </Grid>
+</Window>

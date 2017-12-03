@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\POP-SF6\POP-SF-06-2016-GUI\App.xaml
-10-1284526992
+13-1879318630
 
-23448354368
+26-643820312
 131569487696
-GUI\AddChangeKorisnikWindow.xaml;GUI\AddTipNamestajaW.xaml;GUI\AdministratorWindow.xaml;GUI\AkcijaWindow.xaml;GUI\KorisnikWindow.xaml;GUI\LoginWindow.xaml;GUI\AddNamestajWindow.xaml;GUI\NamestajWindow.xaml;GUI\ProdavacWindow.xaml;GUI\TipNamestajaWindow.xaml;
+GUI\AddChangeAkcijaWindow.xaml;GUI\AddChangeDodatnaUslugaWindow.xaml;GUI\AddChangeKorisnikWindow.xaml;GUI\AddTipNamestajaW.xaml;GUI\AdministratorWindow.xaml;GUI\AkcijaWindow.xaml;GUI\DodatnaUslugaWindow.xaml;GUI\KorisnikWindow.xaml;GUI\LoginWindow.xaml;GUI\AddNamestajWindow.xaml;GUI\NamestajWindow.xaml;GUI\ProdajaWindow.xaml;GUI\TipNamestajaWindow.xaml;
 
 False
 

@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace POP_SF_06_2016_GUI.GUI
 {
     /// <summary>
-    /// Interaction logic for ProdavacWindow.xaml
+    /// Interaction logic for ProdajaWindow.xaml
     /// </summary>
-    public partial class ProdavacWindow : Window
+    public partial class ProdajaWindow : Window
     {
-        public ProdavacWindow()
+        public ProdajaWindow()
         {
             InitializeComponent();
-        }
-
-        private void btnIzlaz_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

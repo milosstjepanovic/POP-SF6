@@ -5,16 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AdministratorWindow" Height="316" Width="509.6">
+        Title="AdministratorWindow" Height="373.6" Width="509.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Korisnici" HorizontalAlignment="Left" Margin="55,100,0,0" VerticalAlignment="Top" Width="95" 
+        <Button Content="Korisnici" HorizontalAlignment="Left" Margin="55,82,0,0" VerticalAlignment="Top" Width="95" 
                 Click="btnKorisnici_Click" Height="28" Name="btnKorisnici"/>
-        <Button Content="Namestaj" HorizontalAlignment="Left" Margin="199,100,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+        <Button Content="Namestaj" HorizontalAlignment="Left" Margin="199,82,0,0" VerticalAlignment="Top" Width="95" Height="28" 
                 Click="btnNamestaj_Click" Name="btnNamestaj"/>
-        <Button Content="Akcije" HorizontalAlignment="Left" Margin="199,166,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+        <Button Content="Akcije" HorizontalAlignment="Left" Margin="55,146,0,0" VerticalAlignment="Top" Width="95" Height="28" 
                 Click="btnAkcije_Click" Name="btnAkcije"/>
-        <Button Content="Tipovi namestaja" HorizontalAlignment="Left" Margin="354,100,0,0" VerticalAlignment="Top" Width="103" Height="28" Name="btnTipoviNamestaja" Click="btnTipoviNamestaja_Click"/>
-        <Button Content="Prodaja" HorizontalAlignment="Left" Margin="199,40,0,0" VerticalAlignment="Top" Width="95" Height="28" Name="btnProdaja" Click="btnProdaja_Click"/>
+        <Button Content="Tipovi namestaja" HorizontalAlignment="Left" Margin="354,82,0,0" VerticalAlignment="Top" Width="103" Height="28" 
+                Name="btnTipoviNamestaja" Click="btnTipoviNamestaja_Click"/>
+        <Button Content="Prodaja" HorizontalAlignment="Left" Margin="199,146,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+                Name="btnProdaja" Click="btnProdaja_Click"/>
+        <Button Content="Izloguj se" HorizontalAlignment="Left" Margin="199,252,0,0" VerticalAlignment="Top" Width="95" Height="28"
+                Name="btnIzloguj" Click="btnIzloguj_Click"/>
+        <Button Content="Dodatne usluge" HorizontalAlignment="Left" Margin="354,146,0,0" VerticalAlignment="Top" Width="103" Height="28"
+                Name="btnDodatneUsluge" Click="btnDodatneUsluge_Click"/>
 
     </Grid>
 </Window>

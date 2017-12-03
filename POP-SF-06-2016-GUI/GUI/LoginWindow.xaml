@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="277.317" Width="436.829">
+        Title="LoginWindow" Height="301.902" Width="482.065" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="40,61,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="40,105,0,0" VerticalAlignment="Top" Width="132"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="200,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" 
+        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="75,69,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="75,113,0,0" VerticalAlignment="Top" Width="113"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="220,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" 
                  Name="tbKorisnickoIme"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="200,105,0,0" VerticalAlignment="Top" Width="157" Height="25" Name="pbLozinka" />
-        <Button Content="Prijavi se" HorizontalAlignment="Left" Margin="61,184,0,0" VerticalAlignment="Top" Width="111" Height="24" 
+        <PasswordBox HorizontalAlignment="Left" Margin="220,113,0,0" VerticalAlignment="Top" Width="157" Height="25" Name="pbLozinka" />
+        <Button Content="Prijavi se" HorizontalAlignment="Left" Margin="77,192,0,0" VerticalAlignment="Top" Width="111" Height="24" 
                 Name="btnPrijaviSe" Click="btnPrijaviSe_Click"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="246,184,0,0" VerticalAlignment="Top" Width="111" Height="24" 
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="266,192,0,0" VerticalAlignment="Top" Width="111" Height="24" 
                 Name="btnOdustani" Click="btnOdustani_Click"/>
 
     </Grid>

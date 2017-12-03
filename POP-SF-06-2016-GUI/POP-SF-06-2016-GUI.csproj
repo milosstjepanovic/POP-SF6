@@ -54,6 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUI\AddChangeAkcijaWindow.xaml.cs">
+      <DependentUpon>AddChangeAkcijaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddChangeDodatnaUslugaWindow.xaml.cs">
+      <DependentUpon>AddChangeDodatnaUslugaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AddChangeKorisnikWindow.xaml.cs">
       <DependentUpon>AddChangeKorisnikWindow.xaml</DependentUpon>
     </Compile>
@@ -65,6 +71,9 @@
     </Compile>
     <Compile Include="GUI\AkcijaWindow.xaml.cs">
       <DependentUpon>AkcijaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodatnaUslugaWindow.xaml.cs">
+      <DependentUpon>DodatnaUslugaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\KorisnikWindow.xaml.cs">
       <DependentUpon>KorisnikWindow.xaml</DependentUpon>
@@ -78,13 +87,21 @@
     <Compile Include="GUI\NamestajWindow.xaml.cs">
       <DependentUpon>NamestajWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ProdavacWindow.xaml.cs">
-      <DependentUpon>ProdavacWindow.xaml</DependentUpon>
+    <Compile Include="GUI\ProdajaWindow.xaml.cs">
+      <DependentUpon>ProdajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenericSerializer.cs" />
+    <Page Include="GUI\AddChangeAkcijaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\AddChangeDodatnaUslugaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\AddChangeKorisnikWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\AkcijaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodatnaUslugaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +142,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\ProdavacWindow.xaml">
+    <Page Include="GUI\ProdajaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\akcija.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\dodatna_usluga.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

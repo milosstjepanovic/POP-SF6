@@ -2,7 +2,7 @@
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>1</Id>
-    <Naziv>Ekstra krevet</Naziv>
+    <Naziv>Sofa mala</Naziv>
     <Cena>5500</Cena>
     <KolicinaUMagacinu>3</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
@@ -10,7 +10,7 @@
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
-    <Naziv>Novi izmenjen</Naziv>
+    <Naziv>Krevet mali</Naziv>
     <Cena>1300</Cena>
     <KolicinaUMagacinu>20</KolicinaUMagacinu>
     <TipNamestajaId>0</TipNamestajaId>
@@ -18,7 +18,7 @@
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
-    <Naziv>Danas</Naziv>
+    <Naziv>Bracni krevet</Naziv>
     <Cena>2500</Cena>
     <KolicinaUMagacinu>22</KolicinaUMagacinu>
     <TipNamestajaId>0</TipNamestajaId>
@@ -30,7 +30,7 @@
     <Cena>2500</Cena>
     <KolicinaUMagacinu>5</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>5</Id>
@@ -47,5 +47,13 @@
     <KolicinaUMagacinu>0</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>true</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>7</Id>
+    <Naziv>Stolica velika</Naziv>
+    <Cena>550</Cena>
+    <KolicinaUMagacinu>10</KolicinaUMagacinu>
+    <TipNamestajaId>3</TipNamestajaId>
+    <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

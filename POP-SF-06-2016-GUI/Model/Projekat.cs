@@ -16,6 +16,7 @@ namespace POP.Model
         public ObservableCollection<Namestaj> Namestaj { get; set; }
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<Akcija> Akcija { get; set; }
+        public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
 
         private Projekat()
         {
@@ -23,54 +24,8 @@ namespace POP.Model
             Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
             Akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
-        }
-        
-        /*
-        public List<TipNamestaja> TipoviNamestaja
-        {
-            
-        }
+            DodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatna_usluga.xml");
 
-        public List<Namestaj> Namestaj
-        {
-            get
-            {
-                namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
-                return namestaj;
-            }
-            set
-            {
-                namestaj = value;
-                GenericSerializer.Serialize<Namestaj>("namestaj.xml", namestaj);
-            }
-        }
-
-        public List<Korisnik> Korisnik
-        {
-            get
-            {
-                korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
-                return korisnik;
-            }
-            set
-            {
-                korisnik = value;
-                GenericSerializer.Serialize<Korisnik>("korisnik.xml", korisnik);
-            }
-        }
-
-        public List<Akcija> Akcija
-        {
-            get
-            {
-                akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
-                return akcija;
-            }
-            set
-            {
-                akcija = value;
-                GenericSerializer.Serialize<Akcija>("akcija.xml", akcija);
-            }
-        }*/
+        }        
     }
 }

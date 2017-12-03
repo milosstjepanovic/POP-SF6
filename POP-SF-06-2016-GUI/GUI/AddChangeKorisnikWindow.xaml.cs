@@ -1,4 +1,5 @@
 ﻿using POP.Model;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,47 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
+            var listaKorisnika = Projekat.Instance.Korisnik;
+            TipKorisnika izabraniTipKorisnika = (TipKorisnika)cmbTipKorisnika.SelectedItem;
+            Console.WriteLine(izabraniTipKorisnika);
 
+            switch (operacija)
+            {
+                case TipOperacije.DODAVANJE:
+                    korisnik = new Korisnik()
+                    {
+                        Id = listaKorisnika.Count + 1,
+                        Ime = tbIme.Text,
+                        Prezime = tbPrezime.Text,
+                        KorisnickoIme = tbKorIme.Text,
+                        Lozinka = tbLozinka.Text,
+                        TipKorisnika = izabraniTipKorisnika
+                    };
+                    listaKorisnika.Add(korisnik);
+                    break;
+
+                case TipOperacije.IZMENA:
+
+                    foreach (var k in listaKorisnika)
+                    {
+                        if (k.Id == korisnik.Id)
+                        {
+                            k.Ime = tbIme.Text;
+                            k.Prezime = tbPrezime.Text;
+                            k.KorisnickoIme = tbKorIme.Text;
+                            k.Lozinka = tbLozinka.Text;
+                            k.TipKorisnika = izabraniTipKorisnika;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            //cuvaj u disk
+            GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
+
+            Close();
         }
     }
 }

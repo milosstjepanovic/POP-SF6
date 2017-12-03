@@ -14,14 +14,6 @@ namespace POP.Model
     }
      public class Korisnik : INotifyPropertyChanged, ICloneable
     {
-        /*public int Id { get; set; }
-        public string Ime { get; set; }
-        public string Prezime  { get; set; }
-        public string KorisnickoIme { get; set; }
-        public string Lozinka { get; set; }
-        public TipKorisnika TipKorisnika { get; set; }
-        public bool Obrisan { get; set; }
-        */
 
         private int id;
         private string ime;
@@ -102,14 +94,13 @@ namespace POP.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         
-
         public override string ToString()
         {
             return $"{Ime}, {Prezime}, {KorisnickoIme}, {Lozinka}, {TipKorisnika}";
         }
 
+        
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

@@ -50,7 +50,11 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnIzmeniNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            //var izabraniTipNamestaja = (TipNamestaja)dgTipoviNamestaja.SelectedItem;
+            if (IzabraniTipNamestaja == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             TipNamestaja kopijaTipaNamestaja = (TipNamestaja)IzabraniTipNamestaja.Clone();
 
@@ -61,6 +65,11 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnObrisiNamestaj_Click(object sender, RoutedEventArgs e)
         {
             var tipNamestajaZaBrisanje = (TipNamestaja)dgTipoviNamestaja.SelectedItem;
+            if (tipNamestajaZaBrisanje == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete tip namestaj: { tipNamestajaZaBrisanje.Naziv}?",
                 "Brisanje namestaja", MessageBoxButton.YesNo) == MessageBoxResult.Yes)

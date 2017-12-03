@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AddTipNamestajaW" Height="148.537" Width="296.341">
+        Title="AddTipNamestajaW" Height="148.537" Width="296.341" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="30,23,0,0" VerticalAlignment="Top" Width="62"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="128,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="tbNaziv"/>

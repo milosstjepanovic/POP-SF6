@@ -76,12 +76,13 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnIzmeniNamestaj_Click(object sender, RoutedEventArgs e)
         {
-
-            // vise ne treba
-            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
+            if (IzabraniNamestaj == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             Namestaj kopijaNamestaja = (Namestaj)IzabraniNamestaj.Clone();
-
 
             var namestajProzor = new AddNamestajWindow(kopijaNamestaja, AddNamestajWindow.TipOperacije.IZMENA);
             namestajProzor.ShowDialog();
@@ -90,6 +91,11 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnObrisiNamestaj_Click(object sender, RoutedEventArgs e)
         {
             var namestajZaBrisanje = (Namestaj)dgNamestaj.SelectedItem;
+            if (namestajZaBrisanje == null)
+            {
+                MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete namestaj: { namestajZaBrisanje.Naziv}?",
                 "Brisanje namestaja", MessageBoxButton.YesNo) == MessageBoxResult.Yes)

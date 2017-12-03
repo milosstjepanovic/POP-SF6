@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="AddNamestajWindow" Height="310.832" Width="374.952">
+        Title="AddNamestajWindow" Height="310.832" Width="374.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-0.2,4.2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="94*"/>

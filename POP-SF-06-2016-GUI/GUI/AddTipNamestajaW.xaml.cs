@@ -1,4 +1,5 @@
 ﻿using POP.Model;
+using POP.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +75,9 @@ namespace POP_SF_06_2016_GUI.GUI
                     break;
             }
 
-            Projekat.Instance.TipoviNamestaja = listaTipovaNamestaja;
+            //cuvaj u disk
+            GenericSerializer.Serialize("tipovi_namestaja.xml", listaTipovaNamestaja);
+
             Close();
         }
 

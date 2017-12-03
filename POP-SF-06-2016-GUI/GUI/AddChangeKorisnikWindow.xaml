@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AddChangeKorisnikWindow" Height="323.785" Width="310.976">
+        Title="AddChangeKorisnikWindow" Height="323.785" Width="310.976" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Ime:" HorizontalAlignment="Left" Margin="41,29,0,0" VerticalAlignment="Top" Width="62"/>
         <Label Content="Prezime:" HorizontalAlignment="Left" Margin="41,60,0,0" VerticalAlignment="Top" Width="62"/>

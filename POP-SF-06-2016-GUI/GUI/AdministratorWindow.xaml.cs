@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,7 @@ namespace POP_SF_06_2016_GUI.GUI
                 btnNamestaj.Visibility = System.Windows.Visibility.Collapsed;
                 btnKorisnici.Visibility = System.Windows.Visibility.Collapsed;
                 btnTipoviNamestaja.Visibility = System.Windows.Visibility.Collapsed;
+                btnDodatneUsluge.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -71,7 +73,20 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnProdaja_Click(object sender, RoutedEventArgs e)
         {
+            var prozorProdaja = new ProdajaWindow();
+            prozorProdaja.ShowDialog();
+            
+        }
 
+        private void btnDodatneUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            var prozorDodatneUsluge = new DodatnaUslugaWindow();
+            prozorDodatneUsluge.ShowDialog();
+        }
+
+        private void btnIzloguj_Click(object sender, RoutedEventArgs e)
+        {            
+            Close();
         }
     }
 }
