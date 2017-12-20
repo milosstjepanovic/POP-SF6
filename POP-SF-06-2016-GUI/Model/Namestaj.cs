@@ -19,25 +19,6 @@ namespace POP.Model
         private bool obrisan;
         private TipNamestaja tipNamestaja;
 
-        [XmlIgnore]
-        public TipNamestaja TipNamestaja
-        {
-            get
-            {
-                if (tipNamestaja == null)
-                {
-                    return TipNamestaja.GetById(tipNamestajaId);
-                }
-                return tipNamestaja;
-            }
-            set
-            {
-                tipNamestaja = value;
-                TipNamestajaId = tipNamestaja.Id;
-                OnPropertyChanged("TipNamestaja");
-            }
-        }
-
 
         public int Id
         {
@@ -78,7 +59,26 @@ namespace POP.Model
                 OnPropertyChanged("KolicinaUMagacinu");
             }
         }
-        
+
+        [XmlIgnore]
+        public TipNamestaja TipNamestaja
+        {
+            get
+            {
+                if (tipNamestaja == null)
+                {
+                    return TipNamestaja.GetById(tipNamestajaId);
+                }
+                return tipNamestaja;
+            }
+            set
+            {
+                tipNamestaja = value;
+                TipNamestajaId = tipNamestaja.Id;
+                OnPropertyChanged("TipNamestaja");
+            }
+        }
+
         public int TipNamestajaId
         {
             get { return tipNamestajaId; }

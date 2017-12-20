@@ -27,4 +27,13 @@
     <TipKorisnika>Prodavac</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
+  <Korisnik>
+    <Id>4</Id>
+    <Ime>ilija</Ime>
+    <Prezime>ilija</Prezime>
+    <KorisnickoIme>ilija1</KorisnickoIme>
+    <Lozinka>1234</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>true</Obrisan>
+  </Korisnik>
 </ArrayOfKorisnik>

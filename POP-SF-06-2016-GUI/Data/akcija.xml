@@ -2,7 +2,8 @@
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
     <Id>1</Id>
-    <Popust>0.2</Popust>
+    <Naziv>Novembarska</Naziv>
+    <Popust>3</Popust>
     <DatumPocetka>2017-11-01T00:00:00</DatumPocetka>
     <DatumZavrsetka>2017-11-30T00:00:00</DatumZavrsetka>
     <NamestajId>1</NamestajId>
@@ -10,6 +11,7 @@
   </Akcija>
   <Akcija>
     <Id>2</Id>
+    <Naziv>Decembarska</Naziv>
     <Popust>15</Popust>
     <DatumPocetka>2017-11-01T00:00:00</DatumPocetka>
     <DatumZavrsetka>2017-11-15T00:00:00</DatumZavrsetka>
@@ -18,10 +20,20 @@
   </Akcija>
   <Akcija>
     <Id>3</Id>
+    <Naziv>Novogodisnja</Naziv>
     <Popust>20</Popust>
     <DatumPocetka>2017-12-06T00:00:00</DatumPocetka>
     <DatumZavrsetka>2017-12-31T00:00:00</DatumZavrsetka>
     <NamestajId>3</NamestajId>
+    <Obrisan>false</Obrisan>
+  </Akcija>
+  <Akcija>
+    <Id>4</Id>
+    <Popust>2</Popust>
+    <Naziv>20%</Naziv>
+    <DatumPocetka>2017-12-07T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-12-22T00:00:00</DatumZavrsetka>
+    <NamestajId>0</NamestajId>
     <Obrisan>false</Obrisan>
   </Akcija>
 </ArrayOfAkcija>

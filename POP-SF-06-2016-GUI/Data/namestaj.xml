@@ -56,4 +56,12 @@
     <TipNamestajaId>3</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>ddd</Naziv>
+    <Cena>33</Cena>
+    <KolicinaUMagacinu>33</KolicinaUMagacinu>
+    <TipNamestajaId>5</TipNamestajaId>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
 </ArrayOfNamestaj>

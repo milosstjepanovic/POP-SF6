@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="DodatnaUslugaWindow" Height="373.2" Width="537" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="DodatnaUslugaWindow" Height="370.8" Width="655.457" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid Name="dgDodatneUsluge" HorizontalAlignment="Left" Height="269" VerticalAlignment="Top" Width="518" IsReadOnly="True" CanUserAddRows="False"
-                  AutoGenerateColumns="True" AutoGeneratingColumn="dgDodatneUsluge_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaUsluga}"/>
-        <Button Content="Dodaj uslugu" HorizontalAlignment="Left" Margin="0,291,0,0" VerticalAlignment="Top" Width="Auto" Height="30"
+        <DataGrid Name="dgDodatneUsluge" HorizontalAlignment="Left" Height="269" VerticalAlignment="Top" Width="447" IsReadOnly="True" CanUserAddRows="False"
+                  AutoGenerateColumns="True" AutoGeneratingColumn="dgDodatneUsluge_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaUsluga}" Margin="0,37,0,0"/>
+        <Button Content="Dodaj uslugu" HorizontalAlignment="Right" Margin="0,37,34.6,0" VerticalAlignment="Top" Width="83" Height="30"
                 Name="btnDodaj" Click="btnDodaj_Click"/>
-        <Button Content="Izmeni uslugu" HorizontalAlignment="Left" Margin="97,291,0,0" VerticalAlignment="Top" Width="Auto" Height="30"
+        <Button Content="Izmeni uslugu" HorizontalAlignment="Right" Margin="0,91,34.6,0" VerticalAlignment="Top" Width="83" Height="30"
                 Name="btnIzmeni" Click="btnIzmeni_Click"/>
-        <Button Content="Obrisi uslugu" HorizontalAlignment="Left" Margin="201,291,0,0" VerticalAlignment="Top" Width="Auto" Height="30"
+        <Button Content="Obrisi uslugu" HorizontalAlignment="Right" Margin="0,149,34.6,0" VerticalAlignment="Top" Width="83" Height="30"
                 Name="btnObrisi" Click="btnObrisi_Click"/>
-        <Button Content="Izlaz" HorizontalAlignment="Left" Margin="443,291,0,0" VerticalAlignment="Top" Width="75" Height="30"
+        <Button Content="Izlaz" HorizontalAlignment="Right" Margin="0,276,34.6,0" VerticalAlignment="Top" Width="83" Height="30"
                 Name="btnIzlaz" Click="btnIzlaz_Click"/>
 
 

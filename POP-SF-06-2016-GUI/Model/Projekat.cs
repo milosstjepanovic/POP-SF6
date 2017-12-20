@@ -20,7 +20,7 @@ namespace POP.Model
 
         private Projekat()
         {
-            TipoviNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
+            TipoviNamestaja = TipNamestaja.GetAll();
             Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
             Akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");

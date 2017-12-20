@@ -75,7 +75,7 @@ namespace POP_SF_06_2016_GUI.GUI
                 return;
             }
 
-            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete namestaj: { akcijaZaBrisanje.Popust}?",
+            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete akciju: { akcijaZaBrisanje.Naziv}?",
                 "Brisanje namestaja", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var lista = Projekat.Instance.Akcija;

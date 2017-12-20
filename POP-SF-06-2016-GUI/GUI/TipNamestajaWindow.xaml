@@ -5,21 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="369.406" Width="510.446" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="TipNamestajaWindow" Height="390" Width="722.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="139*"/>
-            <RowDefinition Height="31*"/>
-        </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="True" AutoGeneratingColumn="dgTipoviNamestaja_AutoGeneratingColumn" Grid.Row="0" x:Name="dgTipoviNamestaja" HorizontalAlignment="Left" 
-                 Height="265" VerticalAlignment="Top" Width="494" IsReadOnly="True" CanUserAddRows="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}"/>
-        <Button Grid.Row="1" Width="109" HorizontalAlignment="Left" 
-                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,8.6,0,21">Dodaj tip namestaja</Button>
-        <Button Grid.Row="1" Width="114" HorizontalAlignment="Left" 
-                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="123,8.6,0,21">Izmeni tip namestaja</Button>
-        <Button Grid.Row="1" Width="109" HorizontalAlignment="Left" 
-                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="252,8.6,0,21">Obrisi tip namestaja</Button>
-        <Button Grid.Row="1" Width="48" HorizontalAlignment="Right" 
-                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,8.6,3,21">Izlaz</Button>
+                 Height="276" VerticalAlignment="Top" Width="494" IsReadOnly="True" CanUserAddRows="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" Margin="0,50,0,0"/>
+        <Button Width="114" HorizontalAlignment="Right" 
+                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,50,23,275.8">Dodaj tip namestaja</Button>
+        <Button Width="114" HorizontalAlignment="Right" 
+                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="0,100,23,225.8">Izmeni tip namestaja</Button>
+        <Button Width="114" HorizontalAlignment="Right" 
+                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="0,150,23,175.8">Obrisi tip namestaja</Button>
+        <Button Width="114" HorizontalAlignment="Right" 
+                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,291,23,34.8" RenderTransformOrigin="0.493,0.35">Izlaz</Button>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="tbPretrazi"/>
     </Grid>
 </Window>

@@ -5,22 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="KorisnikWindow" Height="373.2" Width="537" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="KorisnikWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="278*"/>
-            <RowDefinition Height="65*"/>
-        </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" x:Name="dgKorisnik" HorizontalAlignment="Left" VerticalAlignment="Top" Height="269" Width="518" 
+        <DataGrid Grid.Row="0" x:Name="dgKorisnik" HorizontalAlignment="Left" VerticalAlignment="Top" Height="275" Width="548" 
                   AutoGenerateColumns="True" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" IsReadOnly="True" CanUserAddRows="False"
-                  SelectedItem="{Binding Path=IzabraniKorisnik}"/>
-        <Button Grid.Row="1" Width="85" HorizontalAlignment="Left" Name="btnDodajKorisnika" 
-                Click="btnDodajKorisnika_Click" Margin="0,13.6,0,14.2">Dodaj korisnika</Button>
-        <Button Grid.Row="1" Width="88" HorizontalAlignment="Left" Margin="100,12.6,0,15.2" 
+                  Margin="0,53,0,0" SelectedItem="{Binding Path=IzabraniKorisnik}"/>
+        <Button Width="88" HorizontalAlignment="Right" Name="btnDodajKorisnika" 
+                Click="btnDodajKorisnika_Click" Margin="0,53,24.4,272.8">Dodaj korisnika</Button>
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,109,24.4,215.8" 
                 Name="btnIzmeniKorisnika" Click="btnIzmeniKorisnika_Click">Izmeni korisnika</Button>
-        <Button Grid.Row="1" Width="85" HorizontalAlignment="Left" Margin="207,12.6,0,15.2" 
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,163,24.4,162.8" 
                 Name="btnObrisiKorisnika" Click="btnObrisiKorisnika_Click">Obrisi korisnika</Button>
-        <Button Grid.Row="1" Width="73" HorizontalAlignment="Right" Margin="0,12.6,10.4,15.2" 
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,293,24.4,32.8" 
                 Name="btnIzlaz" Click="btnIzlaz_Click">Izlaz</Button>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 Name="tbPretrazi"/>
     </Grid>
 </Window>

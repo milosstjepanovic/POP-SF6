@@ -43,6 +43,7 @@ namespace POP_SF_06_2016_GUI.GUI
             this.akcija = akcija;
             this.operacija = operacija;
 
+            tbNaziv.DataContext = akcija;
             tbPopust.DataContext = akcija;
             dpDatumPocetka.DataContext = akcija;
             dpDatumZavrsetka.DataContext = akcija;
@@ -52,8 +53,8 @@ namespace POP_SF_06_2016_GUI.GUI
             for (int i = 0; i < listaSvih.Count; i++)
                 if (listaSvih[i].Obrisan == false)
                     listaNeobrisanih.Add(listaSvih[i]);
-            cmbNamestaj.ItemsSource = listaNeobrisanih;
-            cmbNamestaj.DataContext = akcija;
+            //cmbNamestaj.ItemsSource = listaNeobrisanih;
+            //cmbNamestaj.DataContext = akcija;
 
             
         }
@@ -62,6 +63,7 @@ namespace POP_SF_06_2016_GUI.GUI
         {
             var listaAkcija = Projekat.Instance.Akcija;
             
+            
 
             switch (operacija)
             {
@@ -69,6 +71,7 @@ namespace POP_SF_06_2016_GUI.GUI
                     akcija = new Akcija()
                     {
                         Id = listaAkcija.Count + 1,
+                        Naziv = tbNaziv.Text,
                         Popust = Decimal.Parse(tbPopust.Text),
                         DatumPocetka = dpDatumPocetka.SelectedDate.Value,
                         DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value
@@ -83,6 +86,7 @@ namespace POP_SF_06_2016_GUI.GUI
                     {
                         if (a.Id == akcija.Id)
                         {
+                            a.Naziv = tbNaziv.Text;
                             a.Popust = Decimal.Parse(tbPopust.Text);
                             a.DatumPocetka = dpDatumPocetka.SelectedDate.Value;
                             a.DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value;
@@ -102,6 +106,16 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnOdustani_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnDodaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnObrisi_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

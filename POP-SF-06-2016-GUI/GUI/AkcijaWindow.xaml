@@ -5,21 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AkcijaWindow" Height="373.2" Width="537" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AkcijaWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="278*"/>
-            <RowDefinition Height="65*"/>
-        </Grid.RowDefinitions>
-        <DataGrid Name="dgAkcija" HorizontalAlignment="Left" Height="269" VerticalAlignment="Top" Width="518" IsReadOnly="True" CanUserAddRows="False" 
-                  AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaAkcija}"/>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Margin="88,13.2,0,12.8" Name="btnIzmeniAkciju" 
+        <DataGrid Name="dgAkcija" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="548" IsReadOnly="True" CanUserAddRows="False" 
+                  Margin="0,53,0,0" AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaAkcija}"/>
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,56,24.4,274.8" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,112,24.4,218.8" Name="btnIzmeniAkciju" 
                 Click="btnIzmeniAkciju_Click">Izmeni akciju</Button>
-        <Button Grid.Row="1" Width="Auto" Height="30" HorizontalAlignment="Left" Margin="182,13.2,0,12.8" Name="btnObrisiAkciju" 
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,165,24.4,165.8" Name="btnObrisiAkciju" 
                 Click="btnObrisiAkciju_Click">Obrisi akciju</Button>
-        <Button Grid.Row="1" Width="48" Height="30" HorizontalAlignment="Right" Margin="0,13.2,0.4,12.8" Name="btnIzlaz" 
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,296,24.4,34.8" Name="btnIzlaz" 
                 Click="btnIzlaz_Click">Izlaz</Button>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 Name="tbPretrazi"/>
 
     </Grid>
 </Window>

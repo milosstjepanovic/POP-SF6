@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,12 @@
     </Compile>
     <Compile Include="GUI\AddChangeKorisnikWindow.xaml.cs">
       <DependentUpon>AddChangeKorisnikWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddChangeProdajaWindow.xaml.cs">
+      <DependentUpon>AddChangeProdajaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddChangeStavkeWindow.xaml.cs">
+      <DependentUpon>AddChangeStavkeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\AddTipNamestajaW.xaml.cs">
       <DependentUpon>AddTipNamestajaW.xaml</DependentUpon>
@@ -103,6 +110,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\AddChangeKorisnikWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\AddChangeProdajaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\AddChangeStavkeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\dodatna_usluga.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DB Scripts\createbase.sql" />
+    <Content Include="DB Scripts\seed.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

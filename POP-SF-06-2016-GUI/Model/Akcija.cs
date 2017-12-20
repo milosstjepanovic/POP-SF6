@@ -12,14 +12,16 @@ namespace POP.Model
     {
 
         private int id;
+        private string naziv;
         private decimal popust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
         private int namestajId;
         private bool obrisan;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        
+        public event PropertyChangedEventHandler PropertyChanged;       
+
+
         public int Id
         {
             get { return id; }
@@ -27,6 +29,16 @@ namespace POP.Model
             {
                 id = value;
                 OnPropertyChanged("Id");
+            }
+        }
+
+        public string Naziv
+        {
+            get { return naziv; }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
             }
         }
 
@@ -102,7 +114,7 @@ namespace POP.Model
 
         public override string ToString()
         {
-            return $"{Popust}, {DatumPocetka}, {DatumZavrsetka}, {namestajPopust.Naziv}";
+            return $"{Naziv}, {Popust}, {DatumPocetka}, {DatumZavrsetka}, {namestajPopust.Naziv}";
         }
 
 
@@ -134,6 +146,7 @@ namespace POP.Model
             return new Akcija
             {
                 id = Id,
+                naziv = Naziv,
                 popust = Popust,
                 datumPocetka = DatumPocetka,
                 datumZavrsetka = DatumZavrsetka,

@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="ProdajaWindow" Height="536.708" Width="485.298" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="ProdajaWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <DataGrid Grid.Row="0" x:Name="dgProdaja" HorizontalAlignment="Left"
+                 Height="275" VerticalAlignment="Top" Width="548" AutoGenerateColumns="True" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" 
+                  IsReadOnly="True" CanUserAddRows="False" Margin="0,53,0,0"/>
+        <Button Width="96" HorizontalAlignment="Right" 
+                Name="btnDodajProdaju" Click="btnDodajProdaju_Click" Margin="0,53,24.4,272.8">Dodaj prodaju</Button>
+        <Button Width="96" HorizontalAlignment="Right" 
+                Name="btnIzmeniProdaju" Click="btnIzmeniProdaju_Click" Margin="0,109,24.4,216.8">Izmeni prodaju</Button>
+        <Button Width="96" HorizontalAlignment="Right" 
+                Name="btnObrisiProdaju" Click="btnObrisiProdaju_Click" Margin="0,163,24.4,162.8">Obrisi prodaju</Button>
+        <Button Width="96" HorizontalAlignment="Right" 
+                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,293,24.4,32.8">Izlaz</Button>
     </Grid>
 </Window>

@@ -22,8 +22,8 @@
                  Name="tbLozinka" Text="{Binding Path=Lozinka}"/>
         <ComboBox HorizontalAlignment="Left" Margin="150,155,0,0" VerticalAlignment="Top" Width="120" 
                   Name="cmbTipKorisnika" SelectedItem="{Binding Path=TipKorisnika}"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="56,240,0,0" VerticalAlignment="Top" Width="80" Name="btnSacuvaj" Click="btnSacuvaj_Click"/>
-        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="181,240,0,0" VerticalAlignment="Top" Width="80" Name="btnZatvori" Click="btnZatvori_Click"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="56,240,0,0" VerticalAlignment="Top" Width="80" Name="btnSacuvaj" Click="btnSacuvaj_Click" Height="25"/>
+        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="181,240,0,0" VerticalAlignment="Top" Width="80" Name="btnZatvori" Click="btnZatvori_Click" Height="25"/>
 
 
 

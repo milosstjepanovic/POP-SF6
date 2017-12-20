@@ -15,38 +15,33 @@ using System.Windows.Shapes;
 namespace POP_SF_06_2016_GUI.GUI
 {
     /// <summary>
-    /// Interaction logic for ProdajaWindow.xaml
+    /// Interaction logic for AddChangeProdajaWindow.xaml
     /// </summary>
-    public partial class ProdajaWindow : Window
+    public partial class AddChangeProdajaWindow : Window
     {
-        public ProdajaWindow()
+        public AddChangeProdajaWindow()
         {
             InitializeComponent();
         }
 
-        private void dgProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnDodajProdaju_Click(object sender, RoutedEventArgs e)
+        private void btnObrisi_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnIzmeniProdaju_Click(object sender, RoutedEventArgs e)
+        private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnObrisiProdaju_Click(object sender, RoutedEventArgs e)
+        private void btnOdustani_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void btnIzlaz_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
