@@ -30,11 +30,18 @@ namespace POP_SF_06_2016_GUI.GUI
             InitializeComponent();
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipoviNamestaja);
+            view.Filter = FilterNeobrisanihTipova;
 
             dgTipoviNamestaja.ItemsSource = view;
             dgTipoviNamestaja.DataContext = this;
             dgTipoviNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipoviNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+        }
+
+        private bool FilterNeobrisanihTipova(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
 
         }
 
@@ -65,6 +72,7 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnObrisiNamestaj_Click(object sender, RoutedEventArgs e)
         {
             var tipNamestajaZaBrisanje = (TipNamestaja)dgTipoviNamestaja.SelectedItem;
+
             if (tipNamestajaZaBrisanje == null)
             {
                 MessageBox.Show("Morate izabrati neku stavku.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -80,10 +88,11 @@ namespace POP_SF_06_2016_GUI.GUI
                 {
                     if (tipNamestaja.Id == tipNamestajaZaBrisanje.Id)
                     {
-                        tipNamestaja.Obrisan = true;
+                        TipNamestaja.Obrisi(tipNamestaja);
+                        view.Refresh();
+                        
                     }
-                }
-                Projekat.Instance.TipoviNamestaja = lista;
+                }               
             }
         }
 
@@ -95,15 +104,10 @@ namespace POP_SF_06_2016_GUI.GUI
         private void dgTipoviNamestaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             string sakrijKolone = (string)e.Column.Header;
-            if (sakrijKolone == "Id")
+            if (sakrijKolone == "Id" || sakrijKolone == "Obrisan")
             {
                 e.Cancel = true;
-            }
-                        
-            if (sakrijKolone == "Obrisan")
-            {
-                e.Cancel = true;
-            }
+            }            
         }
     }
 }

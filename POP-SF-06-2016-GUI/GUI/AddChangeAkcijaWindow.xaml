@@ -26,7 +26,7 @@
                 Click="btnSacuvaj_Click" RenderTransformOrigin="0.624,2.781" Height="25"/>
         <Button Content="Odustani" HorizontalAlignment="Left" Margin="337,418,0,0" VerticalAlignment="Top" Width="75" Name="btnOdustani" 
                 Click="btnOdustani_Click" RenderTransformOrigin="0.485,1.5" Height="25"/>
-        <DataGrid HorizontalAlignment="Left" Height="146" Margin="60,220,0,0" VerticalAlignment="Top" Width="391"/>
+        <DataGrid Name="dgNamestajNaPopustu" HorizontalAlignment="Left" Height="146" Margin="60,220,0,0" VerticalAlignment="Top" Width="391"/>
         <Button Content="Dodaj" HorizontalAlignment="Right" Margin="0,220,33.4,0" VerticalAlignment="Top" Width="75" Name="btnDodaj" Click="btnDodaj_Click" Height="25"/>
         <Button Content="Obrisi" HorizontalAlignment="Right" Margin="0,260,33.4,0" VerticalAlignment="Top" Width="75" Name="btnObrisi" Click="btnObrisi_Click" Height="25"/>
 

@@ -42,42 +42,33 @@ namespace POP_SF_06_2016_GUI.GUI
             this.tipNamestaja = tipNamestaja;
             this.operacija = operacija;
 
-            tbNaziv.Text = tipNamestaja.Naziv;
+            tbNaziv.DataContext = tipNamestaja;
         }
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
-            var listaTipovaNamestaja = Projekat.Instance.TipoviNamestaja;
-
+            var ucitaniTipoviNamestaja = Projekat.Instance.TipoviNamestaja;
 
             switch (operacija)
             {
                 case TipOperacije.DODAVANJE:
-                    tipNamestaja = new TipNamestaja()
-                    {
-                        Id = listaTipovaNamestaja.Count + 1,
-                        Naziv = tbNaziv.Text
-                    };
-                    listaTipovaNamestaja.Add(tipNamestaja);
+                    TipNamestaja.Dodaj(tipNamestaja);
                     break;
 
                 case TipOperacije.IZMENA:
-                    foreach (var n in listaTipovaNamestaja)
+                    foreach (var tipNam in ucitaniTipoviNamestaja)
                     {
-                        if (n.Id == tipNamestaja.Id)
+                        if (tipNam.Id == tipNamestaja.Id)
                         {
-                            n.Naziv = tbNaziv.Text;
+                            tipNam.Naziv = tbNaziv.Text;
                             break;
                         }
                     }
+                    TipNamestaja.Izmeni(tipNamestaja);
                     break;
                 default:
                     break;
             }
-
-            //cuvaj u disk
-            GenericSerializer.Serialize("tipovi_namestaja.xml", listaTipovaNamestaja);
-
             Close();
         }
 

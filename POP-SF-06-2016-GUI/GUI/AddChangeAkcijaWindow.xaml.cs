@@ -1,7 +1,9 @@
 ﻿using POP.Model;
 using POP.Utils;
+using POP_SF_06_2016_GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,10 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class AddChangeAkcijaWindow : Window
     {
+        private ICollectionView view;
+
+        public AkcijaStavke IzabraneStavke { get; set; }
+
         public enum TipOperacije
         {
             DODAVANJE,
@@ -36,6 +42,14 @@ namespace POP_SF_06_2016_GUI.GUI
             InitializeComponent();
 
             InicijalizujPodatke(akcija, operacija);
+
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijaStavke);
+            //view.Filter = FilterNeobrisanihStavki;
+
+            dgNamestajNaPopustu.ItemsSource = view;
+            dgNamestajNaPopustu.DataContext = this;
+            dgNamestajNaPopustu.IsSynchronizedWithCurrentItem = true;
+            dgNamestajNaPopustu.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void InicijalizujPodatke(Akcija akcija, TipOperacije operacija)
@@ -48,58 +62,36 @@ namespace POP_SF_06_2016_GUI.GUI
             dpDatumPocetka.DataContext = akcija;
             dpDatumZavrsetka.DataContext = akcija;
 
-            var listaSvih = Projekat.Instance.Namestaj;
-            var listaNeobrisanih = new List<Namestaj>();
-            for (int i = 0; i < listaSvih.Count; i++)
-                if (listaSvih[i].Obrisan == false)
-                    listaNeobrisanih.Add(listaSvih[i]);
-            //cmbNamestaj.ItemsSource = listaNeobrisanih;
-            //cmbNamestaj.DataContext = akcija;
-
-            
+                   
         }
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
-            var listaAkcija = Projekat.Instance.Akcija;
-            
-            
+            var listaAkcija = Projekat.Instance.Akcija;           
 
             switch (operacija)
             {
                 case TipOperacije.DODAVANJE:
-                    akcija = new Akcija()
-                    {
-                        Id = listaAkcija.Count + 1,
-                        Naziv = tbNaziv.Text,
-                        Popust = Decimal.Parse(tbPopust.Text),
-                        DatumPocetka = dpDatumPocetka.SelectedDate.Value,
-                        DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value
-                        //NamestajId = 
-                    };
-                    listaAkcija.Add(akcija);
+                    Akcija.Dodaj(akcija);
                     break;
 
                 case TipOperacije.IZMENA:
-
                     foreach (var a in listaAkcija)
                     {
                         if (a.Id == akcija.Id)
                         {
                             a.Naziv = tbNaziv.Text;
-                            a.Popust = Decimal.Parse(tbPopust.Text);
+                            a.Popust = Double.Parse(tbPopust.Text);
                             a.DatumPocetka = dpDatumPocetka.SelectedDate.Value;
                             a.DatumZavrsetka = dpDatumZavrsetka.SelectedDate.Value;
                             break;
                         }
                     }
+                    Akcija.Izmeni(akcija);
                     break;
                 default:
                     break;
-            }
-
-            GenericSerializer.Serialize("akcija.xml", listaAkcija);
-
+            }            
             Close();
         }
 

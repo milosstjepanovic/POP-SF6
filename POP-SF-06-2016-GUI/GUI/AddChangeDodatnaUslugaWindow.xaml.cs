@@ -53,17 +53,10 @@ namespace POP_SF_06_2016_GUI.GUI
             switch (operacija)
             {
                 case TipOperacije.DODAVANJE:
-                    usluga = new DodatnaUsluga()
-                    {
-                        Id = listaUsluga.Count + 1,
-                        Naziv = tbNaziv.Text,
-                        Cena = Double.Parse(tbCena.Text)
-                    };
-                    listaUsluga.Add(usluga);
+                    DodatnaUsluga.Dodaj(usluga);
                     break;
 
                 case TipOperacije.IZMENA:
-
                     foreach (var u in listaUsluga)
                     {
                         if (u.Id == usluga.Id)
@@ -73,12 +66,11 @@ namespace POP_SF_06_2016_GUI.GUI
                             break;
                         }
                     }
+                    DodatnaUsluga.Izmeni(usluga);
                     break;
                 default:
                     break;
             }
-
-            GenericSerializer.Serialize("dodatne_usluge.xml", listaUsluga);
 
             Close();
         }

@@ -88,11 +88,10 @@ namespace POP_SF_06_2016_GUI.GUI
                 {
                     if (usluga.Id == uslugaZaBrisanje.Id)
                     {
-                        usluga.Obrisan = true;
+                        DodatnaUsluga.Obrisi(usluga);
                         view.Refresh();
                     }
                 }
-                GenericSerializer.Serialize("dodatna_usluga.xml", lista);
             }
         }
 

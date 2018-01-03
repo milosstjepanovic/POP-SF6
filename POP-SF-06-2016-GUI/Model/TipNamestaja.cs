@@ -91,14 +91,18 @@ namespace POP.Model
 
 
         #region Database
-        public static ObservableCollection<TipNamestaja> GetAll()
+        public static ObservableCollection<TipNamestaja> UcitajSveTipoveNamestaja()
         {
             var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP_SF6"].ConnectionString))
+
+            using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
+
             {
+
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan = 0";
+                cmd.CommandText = "SELECT * FROM TIP_NAMESTAJA WHERE OBRISAN = 0";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();
@@ -109,14 +113,71 @@ namespace POP.Model
                 foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
                 {
                     var tn = new TipNamestaja();
-                    tn.Id = int.Parse(row["Id"].ToString());
-                    tn.Naziv = row["Naziv"].ToString();
-                    tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    tn.Id = int.Parse(row["ID"].ToString());
+                    tn.Naziv = row["NAZIV"].ToString();
+                    tn.Obrisan = bool.Parse(row["OBRISAN"].ToString());
 
                     tipoviNamestaja.Add(tn);
                 }
             }
             return tipoviNamestaja;
+        }
+
+
+        public static TipNamestaja Dodaj(TipNamestaja tn)
+        {
+            using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = $"INSERT INTO TIP_NAMESTAJA (NAZIV, OBRISAN) VALUES (@NAZIV, 0);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("NAZIV", tn.Naziv);
+
+                int newId = int.Parse(cmd.ExecuteScalar().ToString()); //ExecuteScalar izvrsava query
+                tn.Id = newId;
+            }
+            Projekat.Instance.TipoviNamestaja.Add(tn); //azuriram i stanje modela
+            return tn;
+        }
+
+        public static void Izmeni(TipNamestaja tn)
+        {
+            using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE TIP_NAMESTAJA SET NAZIV=@Naziv, OBRISAN=@Obrisan WHERE ID=@Id";                
+                cmd.Parameters.AddWithValue("ID", tn.Id);
+                cmd.Parameters.AddWithValue("NAZIV", tn.Naziv);
+                cmd.Parameters.AddWithValue("OBRISAN", tn.Obrisan);
+                
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "UPDATE NAMESTAJ SET OBRISAN=1 WHERE TIP_NAMESTAJA=@Id";
+                cmd.ExecuteNonQuery();
+
+                //azuriram stanje modela
+                foreach (var tipNam in Projekat.Instance.TipoviNamestaja)
+                {
+                    if (tipNam.Id == tn.Id)
+                    {
+                        tipNam.Naziv = tn.Naziv;
+                        tipNam.Obrisan = tn.Obrisan;
+                        break;
+                    }
+                }
+            }
+            //Namestaj.UcitajSveNamestaje();
+        }
+
+        public static void Obrisi(TipNamestaja tn)
+        {
+            tn.Obrisan = true;
+            Izmeni(tn);
         }
 
 

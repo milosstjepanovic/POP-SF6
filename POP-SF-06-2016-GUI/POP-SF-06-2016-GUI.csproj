@@ -100,6 +100,7 @@
     <Compile Include="GUI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AkcijaStavke.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="GUI\AddChangeAkcijaWindow.xaml">
       <SubType>Designer</SubType>

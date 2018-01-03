@@ -61,28 +61,18 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
             //citaj sa diska
-            var listaNamestaja = Projekat.Instance.Namestaj;
+            var ucitaniNamestaji = Projekat.Instance.Namestaj;
             TipNamestaja izabraniTipNamestaja = (TipNamestaja)cmbTipNamestaja.SelectedItem;
 
             switch (operacija)
             {
                 case TipOperacije.DODAVANJE:
-                    namestaj = new Namestaj()
-                    {
-                        Id = listaNamestaja.Count + 1,
-                        Naziv = tbNaziv.Text,
-                        Cena = Double.Parse(tbCena.Text),
-                        KolicinaUMagacinu = int.Parse(tbKolicina.Text),
-                        TipNamestajaId = izabraniTipNamestaja.Id
-                        
-                    };
-                    listaNamestaja.Add(namestaj);
+                    Namestaj.Dodaj(namestaj);
                     break;
 
-                case TipOperacije.IZMENA:
-                    
+                case TipOperacije.IZMENA:                    
                     //var namestajZaIzmenu = listaNamestaja.SingleOrDefault(x => x.Id == namestaj.Id);
-                    foreach (var n in listaNamestaja)
+                    foreach (var n in ucitaniNamestaji)
                     {
                         if (n.Id == namestaj.Id)
                         {
@@ -92,15 +82,12 @@ namespace POP_SF_06_2016_GUI.GUI
                             n.TipNamestajaId = izabraniTipNamestaja.Id;
                             break;
                         }
-                    }               
+                    }
+                    Namestaj.Izmeni(namestaj);
                     break;
                 default:
                     break;
             }          
-            
-            //cuvaj u disk
-            GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
-
             Close();
         }
     }

@@ -10,7 +10,8 @@
         <Label Content="Cena:" HorizontalAlignment="Left" Margin="43,60,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Kolicina:" HorizontalAlignment="Left" Margin="43,99,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Tip namestaja:" HorizontalAlignment="Left" Margin="43,138,0,0" VerticalAlignment="Top"/>
-        <TextBox Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="155,21,0,0" Name="tbNaziv" Text="{Binding Path=Naziv}" />
+        <TextBox Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="155,21,0,0" 
+                 Name="tbNaziv" Text="{Binding Path=Naziv}" />
         <TextBox HorizontalAlignment="Left" Height="23" Margin="155,60,0,0" VerticalAlignment="Top"
                  Width="138" Name="tbCena" Text="{Binding Path=Cena}" />
         <TextBox HorizontalAlignment="Left" Height="23" Margin="155,99,0,0" VerticalAlignment="Top"

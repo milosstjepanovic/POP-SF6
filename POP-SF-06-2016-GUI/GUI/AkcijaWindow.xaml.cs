@@ -31,6 +31,7 @@ namespace POP_SF_06_2016_GUI.GUI
             InitializeComponent();
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Akcija);
+            view.Filter = FilterNeobrisanihAkcija;
 
             dgAkcija.ItemsSource = view;
             dgAkcija.DataContext = this;
@@ -38,6 +39,11 @@ namespace POP_SF_06_2016_GUI.GUI
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
 
+        }
+
+        private bool FilterNeobrisanihAkcija(object obj)
+        {
+            return ((Akcija)obj).Obrisan == false;
         }
 
         private void btnDodajAkciju_Click(object sender, RoutedEventArgs e)
@@ -84,11 +90,10 @@ namespace POP_SF_06_2016_GUI.GUI
                 {
                     if (akcija.Id == akcijaZaBrisanje.Id)
                     {
-                        akcija.Obrisan = true;
+                        Akcija.Obrisi(akcija);
                         view.Refresh();
                     }
                 }
-                GenericSerializer.Serialize("akcija.xml", lista);
             }
         }
 
@@ -99,7 +104,8 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "Obrisan" || e.Column.Header.ToString() == "NamestajId")
+            string sakrij = e.Column.Header.ToString();
+            if (sakrij == "Id" || sakrij == "Obrisan" || sakrij == "NamestajId" || sakrij == "NamestajPopust")
             {
                 e.Cancel = true;
             }

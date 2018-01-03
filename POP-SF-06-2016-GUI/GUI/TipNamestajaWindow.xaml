@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TipNamestajaWindow" Height="390" Width="722.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid AutoGenerateColumns="True" AutoGeneratingColumn="dgTipoviNamestaja_AutoGeneratingColumn" Grid.Row="0" x:Name="dgTipoviNamestaja" HorizontalAlignment="Left" 
+        <DataGrid Name="dgTipoviNamestaja" AutoGenerateColumns="True" AutoGeneratingColumn="dgTipoviNamestaja_AutoGeneratingColumn" Grid.Row="0"  HorizontalAlignment="Left" 
                  Height="276" VerticalAlignment="Top" Width="494" IsReadOnly="True" CanUserAddRows="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" Margin="0,50,0,0"/>
         <Button Width="114" HorizontalAlignment="Right" 
                 Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,50,23,275.8">Dodaj tip namestaja</Button>

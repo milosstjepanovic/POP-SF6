@@ -106,12 +106,11 @@ namespace POP_SF_06_2016_GUI.GUI
                 {
                     if (namestaj.Id == namestajZaBrisanje.Id)
                     {
-                        namestaj.Obrisan = true;
+                        Namestaj.Obrisi(namestaj);
                         view.Refresh();
                     }
                 }
-                GenericSerializer.Serialize("namestaj.xml", lista);                               
-                }
+            }
         }
 
         private void btnIzlaz_Click(object sender, RoutedEventArgs e)

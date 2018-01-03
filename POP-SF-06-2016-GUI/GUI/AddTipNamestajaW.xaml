@@ -8,7 +8,8 @@
         Title="AddTipNamestajaW" Height="148.537" Width="296.341" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="30,23,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="128,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="tbNaziv"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="128,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                 Name="tbNaziv" Text="{Binding Path=Naziv}"/>
         <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj" Click="btnSacuvaj_Click"/>
         <Button Content="Odustani" HorizontalAlignment="Left" Margin="173,80,0,0" VerticalAlignment="Top" Width="75" Name="Odustani" Click="Odustani_Click"/>
 
