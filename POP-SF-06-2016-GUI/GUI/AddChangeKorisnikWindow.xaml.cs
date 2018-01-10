@@ -65,16 +65,7 @@ namespace POP_SF_06_2016_GUI.GUI
             switch (operacija)
             {
                 case TipOperacije.DODAVANJE:
-                    korisnik = new Korisnik()
-                    {
-                        Id = listaKorisnika.Count + 1,
-                        Ime = tbIme.Text,
-                        Prezime = tbPrezime.Text,
-                        KorisnickoIme = tbKorIme.Text,
-                        Lozinka = tbLozinka.Text,
-                        TipKorisnika = izabraniTipKorisnika
-                    };
-                    listaKorisnika.Add(korisnik);
+                    Korisnik.DodajKorisnika(korisnik);
                     break;
 
                 case TipOperacije.IZMENA:
@@ -90,14 +81,11 @@ namespace POP_SF_06_2016_GUI.GUI
                             k.TipKorisnika = izabraniTipKorisnika;
                         }
                     }
+                    Korisnik.IzmeniKorisnika(korisnik);
                     break;
                 default:
                     break;
             }
-
-            //cuvaj u disk
-            GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
-
             Close();
         }
     }

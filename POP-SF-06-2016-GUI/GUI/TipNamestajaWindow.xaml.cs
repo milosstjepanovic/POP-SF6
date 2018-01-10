@@ -37,6 +37,11 @@ namespace POP_SF_06_2016_GUI.GUI
             dgTipoviNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipoviNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            var tipNamestajaSort = new List<string>();
+            tipNamestajaSort.Add("Nazivu");            
+
+            cmbSortiranje.ItemsSource = tipNamestajaSort;
+
         }
 
         private bool FilterNeobrisanihTipova(object obj)
@@ -108,6 +113,23 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 e.Cancel = true;
             }            
+        }
+
+        private void cmbSortiranje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tipNamestajaSort = (string)cmbSortiranje.SelectedItem;
+
+            if (tipNamestajaSort != null)
+            {
+                switch (tipNamestajaSort)
+                {
+                    case "Nazivu":
+                        dgTipoviNamestaja.ItemsSource = Projekat.Instance.TipoviNamestaja.OrderBy(x => x.Naziv);
+                        break;                    
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

@@ -18,6 +18,11 @@ namespace POP.Model
         private double cena;
         private bool obrisan;
 
+        public DodatnaUsluga()
+        {
+
+        }
+
         public int Id
         {
             get { return id; }
@@ -60,7 +65,7 @@ namespace POP.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Cena}";
+            return $"{Naziv}";
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -83,15 +88,40 @@ namespace POP.Model
                 obrisan = Obrisan
             };
         }
-
         
+        public static DodatnaUsluga GetById(int id)
+        {
+            foreach (var usluga in (ObservableCollection<DodatnaUsluga>)DodatnaUsluga.UcitajSveDodatneUsluge())
+            {
+                if (usluga.Id == id)
+                {
+                    return usluga;
+                }
+            }
+            return null;
+        }
+        
+
+        /*
+        public static DodatnaUsluga NadjiPoId(int id)
+        {
+            foreach (var usluga in Projekat.Instance.DodatnaUsluga)
+            {
+                if (usluga.Id == id)
+                {
+                    return usluga;
+                }
+            }
+            return null;
+        }
+        */
+
+
         #region Database
         public static ObservableCollection<DodatnaUsluga> UcitajSveDodatneUsluge()
         {
             var dodatneUsluge = new ObservableCollection<DodatnaUsluga>();
-
-            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP_SF6"].ConnectionString))
-
+            
             using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
 
             {
@@ -107,7 +137,7 @@ namespace POP.Model
 
                 foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
                 {
-                    var du = new DodatnaUsluga();
+                    DodatnaUsluga du = new DodatnaUsluga();
                     du.Id = int.Parse(row["ID"].ToString());
                     du.Naziv = row["NAZIV"].ToString();
                     du.Cena = double.Parse(row["CENA"].ToString());

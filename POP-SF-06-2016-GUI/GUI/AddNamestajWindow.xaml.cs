@@ -50,6 +50,8 @@ namespace POP_SF_06_2016_GUI.GUI
             tbKolicina.DataContext = namestaj;
             cmbTipNamestaja.ItemsSource = Projekat.Instance.TipoviNamestaja;
             cmbTipNamestaja.DataContext = namestaj;
+            cmbAkcija.ItemsSource = Projekat.Instance.Akcija;
+            cmbAkcija.DataContext = namestaj;
 
         }
 
@@ -63,6 +65,7 @@ namespace POP_SF_06_2016_GUI.GUI
             //citaj sa diska
             var ucitaniNamestaji = Projekat.Instance.Namestaj;
             TipNamestaja izabraniTipNamestaja = (TipNamestaja)cmbTipNamestaja.SelectedItem;
+            Akcija izabranaAkcija = (Akcija)cmbAkcija.SelectedItem;
 
             switch (operacija)
             {
@@ -80,6 +83,7 @@ namespace POP_SF_06_2016_GUI.GUI
                             n.Cena = Double.Parse(tbCena.Text);
                             n.KolicinaUMagacinu = int.Parse(tbKolicina.Text);
                             n.TipNamestajaId = izabraniTipNamestaja.Id;
+                            n.AkcijaId = izabranaAkcija.Id;
                             break;
                         }
                     }

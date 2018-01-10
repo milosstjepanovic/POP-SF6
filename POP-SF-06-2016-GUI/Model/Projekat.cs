@@ -15,27 +15,41 @@ namespace POP.Model
 
         public static Projekat Instance { get; private set; } = new Projekat();
 
+        
         public ObservableCollection<TipNamestaja> TipoviNamestaja { get; set; }
         public ObservableCollection<Namestaj> Namestaj { get; set; }
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<Akcija> Akcija { get; set; }
-        //public ObservableCollection<AkcijaStavke> AkcijaStavke { get; set; }
-        public ObservableCollection<AkcijaStavke> AkcijaStavke { get; set; }
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
+        public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja { get; set; }
+        public ObservableCollection<ProdajaStavke> ProdajaStavke { get; set; }
+       
+
 
         private Projekat()
         {
+            
+
             TipoviNamestaja = TipNamestaja.UcitajSveTipoveNamestaja();
             Namestaj = Model.Namestaj.UcitajSveNamestaje();
 
-            Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
-            
+            Korisnik = Model.Korisnik.UcitajSveKorisnike();
             Akcija = Model.Akcija.UcitajSveAkcije();
-            //AkcijaStavke = AkcijaStavke
-            AkcijaStavke = POP_SF_06_2016_GUI.Model.AkcijaStavke.UcitajSveStavke();
 
             DodatnaUsluga = Model.DodatnaUsluga.UcitajSveDodatneUsluge();
+            
+            //AkcijaStavke = AkcijaStavke
+            //AkcijaStavke = POP_SF_06_2016_GUI.Model.AkcijaStavke.UcitajSveStavke();
 
+            
+            ProdajaNamestaja = Model.ProdajaNamestaja.UcitajSveProdaje();
+            
+
+            
+
+            ProdajaStavke = new ObservableCollection<ProdajaStavke>();
+
+            
         }        
     }
 }

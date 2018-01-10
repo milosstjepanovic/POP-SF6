@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="AddNamestajWindow" Height="310.832" Width="374.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AddNamestajWindow" Height="382.032" Width="374.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="43,21,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Cena:" HorizontalAlignment="Left" Margin="43,60,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Kolicina:" HorizontalAlignment="Left" Margin="43,99,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Tip namestaja:" HorizontalAlignment="Left" Margin="43,138,0,0" VerticalAlignment="Top"/>
+        <Label Content="Popust  %:" HorizontalAlignment="Left" Margin="43,177,0,0" VerticalAlignment="Top" Width="86"/>
+        
         <TextBox Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="155,21,0,0" 
                  Name="tbNaziv" Text="{Binding Path=Naziv}" />
         <TextBox HorizontalAlignment="Left" Height="23" Margin="155,60,0,0" VerticalAlignment="Top"
@@ -18,8 +20,13 @@
                  Width="138" Name="tbKolicina" Text="{Binding Path=KolicinaUMagacinu}" />
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="138" Margin="155,138,0,0"
                   Name="cmbTipNamestaja" SelectedItem="{Binding Path=TipNamestaja}" />
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnSacuvaj" Click="btnSacuvaj_Click" Width="80" Height="25" Margin="0,225,219.8,0">Sacuvaj</Button>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,225,86.8,0" Width="80" Height="25">Zatvori</Button>       
+        <ComboBox HorizontalAlignment="Left" Margin="155,180,0,0" VerticalAlignment="Top" Width="138"
+                  Name="cmbAkcija" SelectedItem="{Binding Path=Akcija}"/>
+        
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnSacuvaj" Click="btnSacuvaj_Click" Width="80" Height="25" Margin="0,276,219.8,0">Sacuvaj</Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,276,86.8,0" Width="80" Height="25">Zatvori</Button>
+       
+
     </Grid>
 
 

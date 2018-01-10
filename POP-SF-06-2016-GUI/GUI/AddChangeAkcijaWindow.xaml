@@ -5,30 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AddChangeAkcijaWindow" Height="514.4" Width="601.067" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AddChangeAkcijaWindow" Height="368.8" Width="458.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="106,43,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="264,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Name="tbNaziv" 
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="64,44,0,0" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Name="tbNaziv" 
                  Text="{Binding Path=Naziv}"/>
-        <Label Content="Popust:" HorizontalAlignment="Left" Margin="106,76,0,0" VerticalAlignment="Top" Width="70"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="264,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" 
+        <Label Content="Popust:" HorizontalAlignment="Left" Margin="64,77,0,0" VerticalAlignment="Top" Width="70"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" 
                  Name="tbPopust" Text="{Binding Path=Popust}"/>
-        <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="106,115,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="264,115,0,0" VerticalAlignment="Top" Width="134" 
+        <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="64,116,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="222,116,0,0" VerticalAlignment="Top" Width="134" 
                     Name="dpDatumPocetka" Text="{Binding Path=DatumPocetka,StringFormat=dd/MM/yyyy}"/>
-        <Label Content="Datum zavrsetka:" HorizontalAlignment="Left" Margin="106,149,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="264,151,0,0" VerticalAlignment="Top" Width="134" 
+        <Label Content="Datum zavrsetka:" HorizontalAlignment="Left" Margin="64,150,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="222,152,0,0" VerticalAlignment="Top" Width="134" 
                     Name="dpDatumZavrsetka" Text="{Binding Path=DatumZavrsetka,StringFormat=dd/MM/yyyy}"/>
-        <Label Content="Namestaj na popustu:" HorizontalAlignment="Left" Margin="60,189,0,0" VerticalAlignment="Top"/>
         <!--ComboBox HorizontalAlignment="Left" Margin="179,170,0,0" VerticalAlignment="Top" Width="134" Name="cmbNamestaj"
                   SelectedItem="{Binding Path=NamestajPopust}"/-->
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="182,418,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj"
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="100,265,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj"
                 Click="btnSacuvaj_Click" RenderTransformOrigin="0.624,2.781" Height="25"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="337,418,0,0" VerticalAlignment="Top" Width="75" Name="btnOdustani" 
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="255,265,0,0" VerticalAlignment="Top" Width="75" Name="btnOdustani" 
                 Click="btnOdustani_Click" RenderTransformOrigin="0.485,1.5" Height="25"/>
-        <DataGrid Name="dgNamestajNaPopustu" HorizontalAlignment="Left" Height="146" Margin="60,220,0,0" VerticalAlignment="Top" Width="391"/>
-        <Button Content="Dodaj" HorizontalAlignment="Right" Margin="0,220,33.4,0" VerticalAlignment="Top" Width="75" Name="btnDodaj" Click="btnDodaj_Click" Height="25"/>
-        <Button Content="Obrisi" HorizontalAlignment="Right" Margin="0,260,33.4,0" VerticalAlignment="Top" Width="75" Name="btnObrisi" Click="btnObrisi_Click" Height="25"/>
 
 
 

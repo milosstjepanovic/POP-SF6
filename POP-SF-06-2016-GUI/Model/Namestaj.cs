@@ -18,10 +18,12 @@ namespace POP.Model
         private double cena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
-        //private Akcija akcija;
+        private int akcijaId;
         private bool obrisan;
         private TipNamestaja tipNamestaja;
+        private Akcija akcija;
 
+       
 
         public int Id
         {
@@ -63,7 +65,6 @@ namespace POP.Model
             }
         }
 
-        [XmlIgnore]
         public TipNamestaja TipNamestaja
         {
             get
@@ -90,17 +91,36 @@ namespace POP.Model
                 tipNamestajaId = value;
                 OnPropertyChanged("TipNamestajaId");
             }
-        }      
+        }
 
-        //public Akcija Akcija
-        //{
-        //    get { return akcija; }
-        //    set
-        //    {
-        //        akcija = value;
-        //        OnPropertyChanged("Akcija");
-        //    }
-        //}        
+
+        public Akcija Akcija
+        {
+            get
+            {
+                if (akcija == null)
+                {
+                    return Akcija.GetById(akcijaId);
+                }
+                return akcija;
+            }
+            set
+            {
+                akcija = value;
+                AkcijaId = akcija.Id;
+                OnPropertyChanged("Akcija");
+            }
+        }
+
+        public int AkcijaId
+        {
+            get { return akcijaId; }
+            set
+            {
+                akcijaId = value;
+                OnPropertyChanged("AkcijaId");
+            }
+        }
 
         public bool Obrisan
         {
@@ -130,7 +150,25 @@ namespace POP.Model
             //return Projekat.Instance.TipoviNamestaja.SingleOrDefault(x => x.Id == id);
         }
 
-        
+
+        public static void PovecajSmanjiKolicinu(int id, bool povecaj, int kolicina)
+        {
+            foreach (Namestaj namestaj in Projekat.Instance.Namestaj)
+            {
+                if (namestaj.Id == id)
+                {
+                    if (povecaj == true)
+                    {
+                        namestaj.KolicinaUMagacinu += kolicina;
+                    }
+                    if (povecaj == false)
+                    {
+                        namestaj.KolicinaUMagacinu -= kolicina;
+                    }
+                }
+            }
+        }
+
 
         public override string ToString()
         {
@@ -157,6 +195,8 @@ namespace POP.Model
                 kolicinaUMagacinu = kolicinaUMagacinu,
                 tipNamestaja = TipNamestaja,
                 tipNamestajaId = TipNamestajaId,
+                akcija = Akcija,
+                akcijaId = AkcijaId,
                 obrisan = Obrisan
             };
         }
@@ -190,7 +230,8 @@ namespace POP.Model
                     n.Naziv = row["NAZIV"].ToString();
                     n.KolicinaUMagacinu = int.Parse(row["KOLICINA_MAG"].ToString());
                     n.Cena = double.Parse(row["CENA"].ToString());
-                    n.TipNamestajaId = int.Parse(row["TIP_NAMESTAJA"].ToString());
+                    n.TipNamestajaId = int.Parse(row["TIP_NAMESTAJA_ID"].ToString());
+                    n.AkcijaId = int.Parse(row["AKCIJA_ID"].ToString());
                     n.Obrisan = bool.Parse(row["OBRISAN"].ToString());
 
                     namestaji.Add(n);
@@ -199,7 +240,6 @@ namespace POP.Model
             return namestaji;
         }
 
-
         public static Namestaj Dodaj(Namestaj n)
         {
             using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
@@ -207,15 +247,17 @@ namespace POP.Model
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"INSERT INTO NAMESTAJ (NAZIV, KOLICINA_MAG, CENA, TIP_NAMESTAJA, OBRISAN) " +
-                                  $"VALUES (@NAZIV, @KOLICINA_MAG, @CENA, @TIP_NAMESTAJA, 0);";
+                cmd.CommandText = $"INSERT INTO NAMESTAJ (NAZIV, KOLICINA_MAG, CENA, TIP_NAMESTAJA_ID, AKCIJA_ID, OBRISAN) " +
+                                  $"VALUES (@NAZIV, @KOLICINA_MAG, @CENA, @TIP_NAMESTAJA_ID, @AKCIJA_ID, 0);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-
+                                
                 cmd.Parameters.AddWithValue("NAZIV", n.Naziv);
                 cmd.Parameters.AddWithValue("KOLICINA_MAG", n.KolicinaUMagacinu);
                 cmd.Parameters.AddWithValue("CENA", n.Cena);
-                cmd.Parameters.AddWithValue("TIP_NAMESTAJA", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("TIP_NAMESTAJA_ID", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("AKCIJA_ID", n.AkcijaId);
                 
+
                 int newId = int.Parse(cmd.ExecuteScalar().ToString()); //ExecuteScalar izvrsava query
                 n.Id = newId;
             }
@@ -232,13 +274,14 @@ namespace POP.Model
                 SqlCommand cmd = con.CreateCommand();
                 
                 cmd.CommandText = "UPDATE NAMESTAJ SET NAZIV=@NAZIV, KOLICINA_MAG=@KOLICINA_MAG, CENA=@CENA, " +
-                                  "TIP_NAMESTAJA=@TIP_NAMESTAJA, OBRISAN=@OBRISAN WHERE ID=@ID";
+                                  "TIP_NAMESTAJA_ID=@TIP_NAMESTAJA_ID, AKCIJA_ID=@AKCIJA_ID, OBRISAN=@OBRISAN WHERE ID=@ID";
                 
                 cmd.Parameters.AddWithValue("ID", n.Id);
                 cmd.Parameters.AddWithValue("NAZIV", n.Naziv);
                 cmd.Parameters.AddWithValue("KOLICINA_MAG", n.KolicinaUMagacinu);
                 cmd.Parameters.AddWithValue("CENA", n.Cena);
-                cmd.Parameters.AddWithValue("TIP_NAMESTAJA", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("TIP_NAMESTAJA_ID", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("AKCIJA_ID", n.AkcijaId);
                 cmd.Parameters.AddWithValue("OBRISAN", n.Obrisan);
                 
                 cmd.ExecuteNonQuery();                
@@ -252,6 +295,7 @@ namespace POP.Model
                         namestaj.KolicinaUMagacinu = n.KolicinaUMagacinu;
                         namestaj.Cena = n.Cena;
                         namestaj.TipNamestajaId = n.TipNamestajaId;
+                        namestaj.AkcijaId = n.AkcijaId;
                         namestaj.Obrisan = n.Obrisan;
                         break;
                     }

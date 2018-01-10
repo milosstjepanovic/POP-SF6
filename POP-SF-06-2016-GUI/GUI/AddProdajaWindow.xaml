@@ -1,0 +1,45 @@
+﻿<Window x:Class="POP_SF_06_2016_GUI.GUI.AddProdajaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
+        mc:Ignorable="d"
+        Title="AddProdajaWindow" Height="775.268" Width="673" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Kupac:" HorizontalAlignment="Left" Margin="192,42,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="305,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"
+                 Name="tbKupac" Text="{Binding Path=Kupac}"/>
+        <Label Content="Datum prodaje:" HorizontalAlignment="Left" Margin="192,82,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="305,84,0,0" VerticalAlignment="Top" Width="177" 
+                    Name="dpDatumPocetka" Text="{Binding Path=DatumProdaje}"/>
+        <Label Content="Broj racuna:" HorizontalAlignment="Left" Margin="192,123,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="305,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" IsEnabled="False"
+                 Name="tbBrojRacuna" Text="{Binding Path=BrojRacuna}"/>
+        <DataGrid HorizontalAlignment="Left" Height="162" Margin="42,204,0,0" VerticalAlignment="Top" Width="460" IsReadOnly="True" 
+                  CanUserAddRows="False" Name="dgNamestaj" SelectedItem="{Binding Path=IzabraniNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn"/>
+        <Label Content="Izaberite namestaj:" HorizontalAlignment="Left" Margin="42,173,0,0" VerticalAlignment="Top" Width="127"/>
+        <Label Content="Unesite kolicinu:" HorizontalAlignment="Left" Margin="524,204,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="524,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"
+                 Name="tbKolicina"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="524,305,0,0" VerticalAlignment="Top" Width="97" Height="25"
+                Name="btnDodaj" Click="btnDodaj_Click"/>
+        <DataGrid HorizontalAlignment="Left" Height="142" Margin="42,419,0,0" VerticalAlignment="Top" Width="460" IsReadOnly="True" 
+                  CanUserAddRows="False" Name="dgKorpa" SelectedItem="{Binding Path=IzabraneStavke}" AutoGeneratingColumn="dgKorpa_AutoGeneratingColumn"/>
+        <Button Content="Ukloni" HorizontalAlignment="Left" Margin="524,419,0,0" VerticalAlignment="Top" Width="97" Height="25"
+                Name="btnUkloni" Click="btnUkloni_Click"/>
+        <Label Content="Korpa:" HorizontalAlignment="Left" Margin="42,388,0,0" VerticalAlignment="Top" Width="127"/>
+        <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="123,702,0,0" VerticalAlignment="Top" Width="115" Height="25"
+                Name="btnPotvrdi" Click="btnPotvrdi_Click"/>
+        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="378,702,0,0" VerticalAlignment="Top" Width="115" Height="25"
+                Name="btnZatvori" Click="btnZatvori_Click"/>
+        <Label Content="Ukupna cena:" HorizontalAlignment="Left" Margin="192,615,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="305,618,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"
+                 Name="tbUkupnaCena" Text="{Binding Path=UkupnaCena}"/>
+        <Label Content="Usluga:" HorizontalAlignment="Left" Margin="192,578,0,0" VerticalAlignment="Top" Width="93"/>
+        <ComboBox HorizontalAlignment="Left" Margin="305,578,0,0" VerticalAlignment="Top" Width="125" Name="cmbUsluga"
+                  SelectedItem="{Binding Path=DodatnaUsluga}"/>
+
+
+    </Grid>
+</Window>

@@ -38,7 +38,13 @@ namespace POP_SF_06_2016_GUI.GUI
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
-
+            var akcijaSort = new List<string>();
+            akcijaSort.Add("Nazivu");
+            akcijaSort.Add("Popustu");
+            akcijaSort.Add("Dat. pocetka");
+            akcijaSort.Add("Dat. zavrsetka");
+            
+            cmbSortiranje.ItemsSource = akcijaSort;
         }
 
         private bool FilterNeobrisanihAkcija(object obj)
@@ -105,9 +111,35 @@ namespace POP_SF_06_2016_GUI.GUI
         private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             string sakrij = e.Column.Header.ToString();
-            if (sakrij == "Id" || sakrij == "Obrisan" || sakrij == "NamestajId" || sakrij == "NamestajPopust")
+            if (sakrij == "Id" || sakrij == "Obrisan")
             {
                 e.Cancel = true;
+            }
+        }
+        
+        private void cmbSortiranje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var akcijaSort = (string)cmbSortiranje.SelectedItem;
+
+            if (akcijaSort != null)
+            {
+                switch (akcijaSort)
+                {
+                    case "Nazivu":
+                        dgAkcija.ItemsSource = Projekat.Instance.Akcija.OrderBy(x => x.Naziv);
+                        break;
+                    case "Popustu":
+                        dgAkcija.ItemsSource = Projekat.Instance.Akcija.OrderBy(x => x.Popust);
+                        break;
+                    case "Dat. pocetka":
+                        dgAkcija.ItemsSource = Projekat.Instance.Akcija.OrderBy(x => x.DatumPocetka);
+                        break;
+                    case "Dat. zavrsetka":
+                        dgAkcija.ItemsSource = Projekat.Instance.Akcija.OrderBy(x => x.DatumZavrsetka);
+                        break;                    
+                    default:
+                        break;
+                }
             }
         }
     }

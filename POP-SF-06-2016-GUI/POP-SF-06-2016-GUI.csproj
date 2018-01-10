@@ -70,6 +70,9 @@
     <Compile Include="GUI\AddChangeStavkeWindow.xaml.cs">
       <DependentUpon>AddChangeStavkeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AddProdajaWindow.xaml.cs">
+      <DependentUpon>AddProdajaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AddTipNamestajaW.xaml.cs">
       <DependentUpon>AddTipNamestajaW.xaml</DependentUpon>
     </Compile>
@@ -100,7 +103,7 @@
     <Compile Include="GUI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\AkcijaStavke.cs" />
+    <Compile Include="Model\ProdajaStavke.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="GUI\AddChangeAkcijaWindow.xaml">
       <SubType>Designer</SubType>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\AddChangeStavkeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\AddProdajaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,8 +226,16 @@
     <Resource Include="Data\dodatna_usluga.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB Scripts\createbase.sql" />
-    <Content Include="DB Scripts\seed.sql" />
+    <Content Include="DB Scripts\CREATE TABLE.sql" />
+    <Content Include="DB Scripts\INSERT.sql" />
+    <Resource Include="slike\add.gif" />
+    <Resource Include="slike\close.gif" />
+    <Resource Include="slike\delete.png" />
+    <Resource Include="slike\edit.gif" />
+    <Resource Include="slike\ok.png" />
+    <Resource Include="slike\prikazi.png" />
+    <Resource Include="slike\print.png" />
+    <Resource Include="slike\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

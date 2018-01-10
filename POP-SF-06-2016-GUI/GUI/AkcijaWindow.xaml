@@ -9,16 +9,18 @@
     <Grid>
         <DataGrid Name="dgAkcija" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="548" IsReadOnly="True" CanUserAddRows="False" 
                   Margin="0,53,0,0" AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaAkcija}"/>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,56,24.4,274.8" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,112,24.4,218.8" Name="btnIzmeniAkciju" 
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,56,24.4,269.8" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,112,24.4,213.8" Name="btnIzmeniAkciju" 
                 Click="btnIzmeniAkciju_Click">Izmeni akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,165,24.4,165.8" Name="btnObrisiAkciju" 
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,169,24.4,156.8" Name="btnObrisiAkciju" 
                 Click="btnObrisiAkciju_Click">Obrisi akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,296,24.4,34.8" Name="btnIzlaz" 
+        <Button Width="80" HorizontalAlignment="Right" Margin="0,291,24.4,34.8" Name="btnIzlaz" 
                 Click="btnIzlaz_Click">Izlaz</Button>
         <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="62"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="67,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
                  Name="tbPretrazi"/>
-
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="374,22,0,0" VerticalAlignment="Top" Width="68"/>
+        <ComboBox HorizontalAlignment="Left" Margin="447,22,0,0" VerticalAlignment="Top" Width="101" Name="cmbSortiranje"
+                  SelectionChanged="cmbSortiranje_SelectionChanged"/>
     </Grid>
 </Window>

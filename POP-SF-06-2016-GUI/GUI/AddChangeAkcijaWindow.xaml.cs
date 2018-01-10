@@ -23,9 +23,7 @@ namespace POP_SF_06_2016_GUI.GUI
     /// </summary>
     public partial class AddChangeAkcijaWindow : Window
     {
-        private ICollectionView view;
-
-        public AkcijaStavke IzabraneStavke { get; set; }
+        //private ICollectionView view;
 
         public enum TipOperacije
         {
@@ -42,14 +40,6 @@ namespace POP_SF_06_2016_GUI.GUI
             InitializeComponent();
 
             InicijalizujPodatke(akcija, operacija);
-
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.AkcijaStavke);
-            //view.Filter = FilterNeobrisanihStavki;
-
-            dgNamestajNaPopustu.ItemsSource = view;
-            dgNamestajNaPopustu.DataContext = this;
-            dgNamestajNaPopustu.IsSynchronizedWithCurrentItem = true;
-            dgNamestajNaPopustu.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void InicijalizujPodatke(Akcija akcija, TipOperacije operacija)
@@ -60,9 +50,7 @@ namespace POP_SF_06_2016_GUI.GUI
             tbNaziv.DataContext = akcija;
             tbPopust.DataContext = akcija;
             dpDatumPocetka.DataContext = akcija;
-            dpDatumZavrsetka.DataContext = akcija;
-
-                   
+            dpDatumZavrsetka.DataContext = akcija;                   
         }
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
@@ -98,16 +86,6 @@ namespace POP_SF_06_2016_GUI.GUI
         private void btnOdustani_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void btnDodaj_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnObrisi_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        }        
     }
 }

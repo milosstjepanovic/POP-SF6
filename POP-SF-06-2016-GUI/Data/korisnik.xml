@@ -3,7 +3,7 @@
   <Korisnik>
     <Id>1</Id>
     <Ime>Milos</Ime>
-    <Prezime>Stjepanovic</Prezime>
+    <Prezime>Milosevic</Prezime>
     <KorisnickoIme>miki</KorisnickoIme>
     <Lozinka>miki123</Lozinka>
     <TipKorisnika>Administrator</TipKorisnika>
@@ -14,7 +14,7 @@
     <Ime>Janko</Ime>
     <Prezime>Jankovic</Prezime>
     <KorisnickoIme>janko</KorisnickoIme>
-    <Lozinka>janko123</Lozinka>
+    <Lozinka>123</Lozinka>
     <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
@@ -24,16 +24,16 @@
     <Prezime>Nikolic</Prezime>
     <KorisnickoIme>nikola</KorisnickoIme>
     <Lozinka>123</Lozinka>
-    <TipKorisnika>Prodavac</TipKorisnika>
+    <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
     <Id>4</Id>
-    <Ime>ilija</Ime>
-    <Prezime>ilija</Prezime>
-    <KorisnickoIme>ilija1</KorisnickoIme>
-    <Lozinka>1234</Lozinka>
+    <Ime>Ilija</Ime>
+    <Prezime>Ilic</Prezime>
+    <KorisnickoIme>ilija</KorisnickoIme>
+    <Lozinka>123</Lozinka>
     <TipKorisnika>Prodavac</TipKorisnika>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

@@ -23,6 +23,7 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class NamestajWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs; 
 
         public Namestaj IzabraniNamestaj { get; set; }
         
@@ -30,7 +31,10 @@ namespace POP_SF_06_2016_GUI.GUI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.Namestaj;
+
+            view = cvs.View;
             view.Filter = FilterNeobrisanogNamestaja;
 
             dgNamestaj.ItemsSource = view;
@@ -38,28 +42,23 @@ namespace POP_SF_06_2016_GUI.GUI
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            cmbPretraga.Items.Add("Nazivu");
+            cmbPretraga.Items.Add("Tipu namestaja");
+            cmbPretraga.SelectedIndex = 0;
+
+            var namestajSort = new List<string>();
+            namestajSort.Add("Nazivu");
+            namestajSort.Add("Kolicini");
+            namestajSort.Add("Ceni");
+            namestajSort.Add("Tipu namestaja");
+            namestajSort.Add("Akciji");
+
+            cmbSortiranje.ItemsSource = namestajSort;
         }
 
         private bool FilterNeobrisanogNamestaja(object obj)
         {
-            //1.
-            /*
-            if(((Namestaj).obj).Obrisan == false)
-            {
-                return true; //treba da se prikaze zadovoljava kriterijum
-            }
-            else
-            {
-                return false;
-            }
-            */
-
-            //2. nacin
-            return ((Namestaj)obj).Obrisan == false;
-
-            //3.
-            //return !((Namestaj).obj).Obrisan;
-            
+            return ((Namestaj)obj).Obrisan == false;            
         }
 
         private void btnDodajNamestaj_Click(object sender, RoutedEventArgs e)
@@ -72,6 +71,7 @@ namespace POP_SF_06_2016_GUI.GUI
             };
             var namestajProzor = new AddNamestajWindow(prazanNamestaj, AddNamestajWindow.TipOperacije.DODAVANJE);
             namestajProzor.ShowDialog();
+            //view.Refresh();
             }
 
         private void btnIzmeniNamestaj_Click(object sender, RoutedEventArgs e)
@@ -86,6 +86,7 @@ namespace POP_SF_06_2016_GUI.GUI
 
             var namestajProzor = new AddNamestajWindow(kopijaNamestaja, AddNamestajWindow.TipOperacije.IZMENA);
             namestajProzor.ShowDialog();
+            view.Refresh();
            }
 
         private void btnObrisiNamestaj_Click(object sender, RoutedEventArgs e)
@@ -122,10 +123,63 @@ namespace POP_SF_06_2016_GUI.GUI
         {
             
             string sakrijKolone = (string)e.Column.Header;
-            if (sakrijKolone == "Id" || sakrijKolone == "TipNamestajaId" || sakrijKolone == "Obrisan")
+            if (sakrijKolone == "Id" || sakrijKolone == "TipNamestajaId" || sakrijKolone == "AkcijaId" || 
+                sakrijKolone == "Obrisan")
             {                
                 e.Cancel = true;
             }            
+        }
+
+        private void cmbSortiranje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var namestajSort = (string)cmbSortiranje.SelectedItem;
+
+            if (namestajSort != null)
+            {
+                switch (namestajSort)
+                {
+                    case "Nazivu":
+                        dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.Naziv);
+                        break;
+                    case "Kolicini":
+                        dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.KolicinaUMagacinu);
+                        break;
+                    case "Ceni":
+                        dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.Cena);
+                        break;
+                    case "Tipu namestaja":
+                        dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.TipNamestajaId);
+                        break;
+                    case "Akciji":
+                        dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.AkcijaId);
+                        break;                   
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {
+            string cmb = cmbPretraga.SelectedItem.ToString();
+            string tb = tbPretrazi.Text;
+            Namestaj namestaj = e.Item as Namestaj;
+            switch (cmb)
+            {
+                case "Nazivu":
+                    e.Accepted = namestaj.Naziv.ToString().Contains(tb);
+                    break;                
+                case "Tipu namestaja":
+                    e.Accepted = namestaj.TipNamestaja.Naziv.ToString().Contains(tb);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

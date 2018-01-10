@@ -19,7 +19,6 @@ namespace POP.Model
         private double popust;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
-        private int namestajId;
         private bool obrisan;
 
         public event PropertyChangedEventHandler PropertyChanged;       
@@ -73,37 +72,8 @@ namespace POP.Model
                 datumZavrsetka = value;
                 OnPropertyChanged("DatumZavrsetka");
             }
-        }       
+        }    
 
-        public int NamestajId
-        {
-            get { return namestajId; }
-            set
-            {
-                namestajId = value;
-                OnPropertyChanged("NamestajId");
-            }
-        }
-
-        private Namestaj namestajPopust;
-        [XmlIgnore]
-        public Namestaj NamestajPopust
-        {
-            get
-            {
-                if (namestajPopust == null)
-                {
-                    namestajPopust = Namestaj.GetById(NamestajId);
-                }
-                return namestajPopust;
-            }
-            set
-            {
-                namestajPopust = value;
-                namestajId = namestajPopust.Id;
-                OnPropertyChanged("NamestajPopust");
-            }
-        }
 
         public bool Obrisan
         {
@@ -114,10 +84,11 @@ namespace POP.Model
                 OnPropertyChanged("Obrisan");
             }
         }
+        
 
         public override string ToString()
         {
-            return $"{Naziv}, {Popust}, {DatumPocetka}, {DatumZavrsetka}";
+            return $"{Popust}" + "% do " + $"{DatumZavrsetka}";
         }
 
 
@@ -142,6 +113,18 @@ namespace POP.Model
 
             //ovo zamenjuje sve ovo gore iznad (lambda funkcija)
             //return Projekat.Instance.TipoviNamestaja.SingleOrDefault(x => x.Id == id);
+        }
+
+        public static void OcistiAkcije()
+        {
+            foreach (Akcija akcija in Projekat.Instance.Akcija)
+            {
+                if (akcija.DatumZavrsetka < DateTime.Now)
+                {
+                    Projekat.Instance.Akcija.Remove(akcija);
+                    Obrisi(akcija);
+                }
+            }
         }
 
         public object Clone()
@@ -183,7 +166,7 @@ namespace POP.Model
                     akcija.Naziv = row["NAZIV"].ToString();
                     akcija.DatumPocetka = DateTime.Parse(row["DATUM_OD"].ToString());
                     akcija.DatumZavrsetka = DateTime.Parse(row["DATUM_DO"].ToString());
-                    akcija.Popust = double.Parse(row["POPUST"].ToString());
+                    akcija.Popust = int.Parse(row["POPUST"].ToString());
                     akcija.Obrisan = bool.Parse(row["OBRISAN"].ToString());
 
                     akcije.Add(akcija);
@@ -223,8 +206,8 @@ namespace POP.Model
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE AKCIJA SET NAZIV=@Naziv, DATUM_OD=@DatumPocetka, DATUM_DO=@DatumZavrsetka, " +
-                                  "POPUST=@Popust, OBRISAN=@Obrisan WHERE ID=@Id";
+                cmd.CommandText = "UPDATE AKCIJA SET NAZIV=@NAZIV, DATUM_OD=@DATUM_OD, DATUM_DO=@DATUM_DO, " +
+                                  "POPUST=@POPUST, OBRISAN=@OBRISAN WHERE ID=@ID";
                 cmd.Parameters.AddWithValue("ID", akcija.Id);
                 cmd.Parameters.AddWithValue("NAZIV", akcija.Naziv);
                 cmd.Parameters.AddWithValue("DATUM_OD", akcija.DatumPocetka);

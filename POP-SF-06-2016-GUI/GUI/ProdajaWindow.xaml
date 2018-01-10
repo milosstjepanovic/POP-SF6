@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ProdajaWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid Grid.Row="0" x:Name="dgProdaja" HorizontalAlignment="Left"
+        <DataGrid Grid.Row="0" x:Name="dgProdajaNamestaja" HorizontalAlignment="Left" SelectedItem="{Binding Path=IzabranaProdaja}"
                  Height="275" VerticalAlignment="Top" Width="548" AutoGenerateColumns="True" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" 
                   IsReadOnly="True" CanUserAddRows="False" Margin="0,53,0,0"/>
         <Button Width="96" HorizontalAlignment="Right" 
@@ -18,5 +18,11 @@
                 Name="btnObrisiProdaju" Click="btnObrisiProdaju_Click" Margin="0,163,24.4,162.8">Obrisi prodaju</Button>
         <Button Width="96" HorizontalAlignment="Right" 
                 Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,293,24.4,32.8">Izlaz</Button>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="54"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="69,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114"
+                 Name="tbPretrazi"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="370,22,0,0" VerticalAlignment="Top" Width="67"/>
+        <ComboBox HorizontalAlignment="Left" Margin="442,25,0,0" VerticalAlignment="Top" Width="106" Name="cmbSortiranje"
+                  SelectionChanged="cmbSortiranje_SelectionChanged"/>
     </Grid>
 </Window>

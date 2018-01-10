@@ -23,6 +23,7 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class KorisnikWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs;
 
         public Korisnik IzabraniKorisnik { get; set; }
 
@@ -30,13 +31,30 @@ namespace POP_SF_06_2016_GUI.GUI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.Korisnik;
+
+            view = cvs.View;
             view.Filter = FilterNeobrisanihKorisnika;
 
             dgKorisnik.ItemsSource = view;
             dgKorisnik.DataContext = this;
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            cmbPretraga.Items.Add("Imenu");
+            cmbPretraga.Items.Add("Prezimenu");
+            cmbPretraga.Items.Add("Kor.imenu");
+            cmbPretraga.SelectedIndex = 0;
+
+            var korisnikSort = new List<string>();
+            korisnikSort.Add("Imenu");
+            korisnikSort.Add("Prezimenu");
+            korisnikSort.Add("Kor.imenu");
+            korisnikSort.Add("Lozinci");
+            korisnikSort.Add("Tipu korisnika");
+
+            cmbSortiranje.ItemsSource = korisnikSort;
         }
 
         private bool FilterNeobrisanihKorisnika(object obj)
@@ -89,11 +107,10 @@ namespace POP_SF_06_2016_GUI.GUI
                 {
                     if (korisnik.Id == korisnikZaBrisanje.Id)
                     {
-                        korisnik.Obrisan = true;
+                        Korisnik.ObrisiKorisnika(korisnik);
                         view.Refresh();
                     }
                 }
-                GenericSerializer.Serialize("korisnik.xml", lista);
             }
         }
 
@@ -109,6 +126,60 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 e.Cancel = true;
             }
+        }
+        
+        private void cmbSortiranje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var korisnikSort = (string)cmbSortiranje.SelectedItem;
+
+            if (korisnikSort != null)
+            {
+                switch (korisnikSort)
+                {
+                    case "Imenu":
+                        dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.Ime);
+                        break;
+                    case "Prezimenu":
+                        dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.Prezime);
+                        break;
+                    case "Kor.imenu":
+                        dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.KorisnickoIme);
+                        break;
+                    case "Lozinci":
+                        dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.Lozinka);
+                        break;
+                    case "Tipu korisnika":
+                        dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.TipKorisnika);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {
+            string cmb = cmbPretraga.SelectedItem.ToString();
+            string tb = tbPretrazi.Text.ToLower();
+            Korisnik korisnik = (Korisnik)e.Item;
+            switch (cmb)
+            {
+                case "Imenu":
+                    e.Accepted = korisnik.Ime.ToString().ToLower().Contains(tb);
+                    break;
+                case "Prezimenu":
+                    e.Accepted = korisnik.Prezime.ToString().ToLower().Contains(tb);
+                    break;
+                case "Kor.imenu":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

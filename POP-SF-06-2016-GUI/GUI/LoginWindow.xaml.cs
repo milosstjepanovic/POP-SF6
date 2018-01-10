@@ -15,6 +15,7 @@ namespace POP_SF_06_2016_GUI.GUI
         {
             InitializeComponent();
             tbKorisnickoIme.Focus();
+            //DodatnaUsluga.UcitajSveDodatneUsluge();
             
         }
         

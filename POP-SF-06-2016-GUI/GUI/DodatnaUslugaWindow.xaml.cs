@@ -38,6 +38,12 @@ namespace POP_SF_06_2016_GUI.GUI
             dgDodatneUsluge.DataContext = this;
             dgDodatneUsluge.IsSynchronizedWithCurrentItem = true;
             dgDodatneUsluge.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            var uslugeSort = new List<string>();
+            uslugeSort.Add("Nazivu");
+            uslugeSort.Add("Ceni");           
+
+            cmbSortiranje.ItemsSource = uslugeSort;
         }
 
         private bool FilterNeobrisanihUsluga(object obj)
@@ -105,6 +111,26 @@ namespace POP_SF_06_2016_GUI.GUI
             if ((string)e.Column.Header == "Id" || (string)e.Column.Header == "Obrisan")
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void cmbSortiranje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var uslugeSort = (string)cmbSortiranje.SelectedItem;
+
+            if (uslugeSort != null)
+            {
+                switch (uslugeSort)
+                {
+                    case "Nazivu":
+                        dgDodatneUsluge.ItemsSource = Projekat.Instance.DodatnaUsluga.OrderBy(x => x.Naziv);
+                        break;
+                    case "Ceni":
+                        dgDodatneUsluge.ItemsSource = Projekat.Instance.DodatnaUsluga.OrderBy(x => x.Cena);
+                        break;                    
+                    default:
+                        break;
+                }
             }
         }
     }

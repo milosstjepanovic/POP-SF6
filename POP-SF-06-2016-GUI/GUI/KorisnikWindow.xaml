@@ -5,21 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="KorisnikWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="KorisnikWindow" Height="421.2" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid Grid.Row="0" x:Name="dgKorisnik" HorizontalAlignment="Left" VerticalAlignment="Top" Height="275" Width="548" 
                   AutoGenerateColumns="True" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" IsReadOnly="True" CanUserAddRows="False"
-                  Margin="0,53,0,0" SelectedItem="{Binding Path=IzabraniKorisnik}"/>
+                  Margin="2,78,0,0" SelectedItem="{Binding Path=IzabraniKorisnik}"/>
         <Button Width="88" HorizontalAlignment="Right" Name="btnDodajKorisnika" 
-                Click="btnDodajKorisnika_Click" Margin="0,53,24.4,272.8">Dodaj korisnika</Button>
-        <Button Width="88" HorizontalAlignment="Right" Margin="0,109,24.4,215.8" 
+                Click="btnDodajKorisnika_Click" Margin="0,78,22.4,278.2">Dodaj korisnika</Button>
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,134,22.4,222.2" 
                 Name="btnIzmeniKorisnika" Click="btnIzmeniKorisnika_Click">Izmeni korisnika</Button>
-        <Button Width="88" HorizontalAlignment="Right" Margin="0,163,24.4,162.8" 
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,188,22.4,168.2" 
                 Name="btnObrisiKorisnika" Click="btnObrisiKorisnika_Click">Obrisi korisnika</Button>
-        <Button Width="88" HorizontalAlignment="Right" Margin="0,293,24.4,32.8" 
+        <Button Width="88" HorizontalAlignment="Right" Margin="0,318,22.4,38.2" 
                 Name="btnIzlaz" Click="btnIzlaz_Click">Izlaz</Button>
-        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
-                 Name="tbPretrazi"/>
+        <Label Content="Pretrazi po:" HorizontalAlignment="Left" Margin="2,10,0,0" VerticalAlignment="Top" Width="72"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="81,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                 Name="tbPretrazi" TextChanged="tbPretrazi_TextChanged"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="354,47,0,0" VerticalAlignment="Top" Width="71"/>
+        <ComboBox HorizontalAlignment="Left" Margin="430,47,0,0" VerticalAlignment="Top" Width="120" Name="cmbSortiranje" SelectionChanged="cmbSortiranje_SelectionChanged"/>
+        <ComboBox HorizontalAlignment="Left" Margin="81,13,0,0" VerticalAlignment="Top" Width="120" Name="cmbPretraga"/>
+        <Label Content="Vrednost:" HorizontalAlignment="Left" Margin="2,47,0,0" VerticalAlignment="Top" Width="72"/>
     </Grid>
 </Window>
