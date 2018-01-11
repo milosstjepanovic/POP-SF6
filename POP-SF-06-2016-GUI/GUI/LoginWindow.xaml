@@ -5,17 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="301.902" Width="482.065" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" Height="384.267" Width="620" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/login2.jpg" Opacity="0.5">
+            <ImageBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ImageBrush.RelativeTransform>
+        </ImageBrush>
+    </Window.Background>
     <Grid>
-        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="75,69,0,0" VerticalAlignment="Top" Width="113"/>
-        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="75,113,0,0" VerticalAlignment="Top" Width="113"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="220,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" 
+        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Margin="159,62,0,0" VerticalAlignment="Top" Width="113" Foreground="White" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="159,106,0,0" VerticalAlignment="Top" Width="113" FontWeight="Bold" Foreground="White" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="294,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" 
                  Name="tbKorisnickoIme"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="220,113,0,0" VerticalAlignment="Top" Width="157" Height="25" Name="pbLozinka" />
-        <Button Content="Prijavi se" HorizontalAlignment="Left" Margin="77,192,0,0" VerticalAlignment="Top" Width="111" Height="24" 
-                Name="btnPrijaviSe" Click="btnPrijaviSe_Click"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="266,192,0,0" VerticalAlignment="Top" Width="111" Height="24" 
-                Name="btnOdustani" Click="btnOdustani_Click"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="294,106,0,0" VerticalAlignment="Top" Width="157" Height="29" Name="pbLozinka" />
+        <Button Content="Prijavi se" HorizontalAlignment="Left" Margin="140,181,0,0" VerticalAlignment="Top" Width="120" Height="30" 
+                Name="btnPrijaviSe" Click="btnPrijaviSe_Click" Background="#FF0B1488" Foreground="White" FontWeight="Bold"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="353,181,0,0" VerticalAlignment="Top" Width="120" Height="30" 
+                Name="btnOdustani" Click="btnOdustani_Click" Background="#FF0B1488" Foreground="White" FontWeight="Bold"/>
 
     </Grid>
 </Window>

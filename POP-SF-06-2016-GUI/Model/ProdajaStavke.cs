@@ -14,52 +14,63 @@ namespace POP_SF_06_2016_GUI.Model
     {
 
         private int id;
+        private string naziv;
+        private int kolicina;
+        private double cena;
+        private double ukupnaCena;
+        private double cenaSaPopustom;
+        private Akcija akcija;
+        //private bool obrisan;
+
+        
+
 
         public int Id
         {
             get { return id; }
             set { id = value; }
-        }
-
-        private string naziv;
+        }        
 
         public string Naziv
         {
             get { return naziv; }
             set { naziv = value; }
-        }
-
-        private int kolicina;
+        }        
 
         public int Kolicina
         {
             get { return kolicina; }
             set { kolicina = value; }
-        }
-
-
-        private double cena;
+        }        
 
         public double Cena
         {
             get { return cena; }
             set { cena = value; }
-        }
-
-        private double ukupnaCena;
+        }              
 
         public double UkupnaCena
         {
-            get { return ukupnaCena; }
+            get { return cena * kolicina; }
             set { ukupnaCena = value; }
-        }
-
-        private double cenaSaPopustom;
+        }       
 
         public double CenaSaPopustom
         {
             get
             {
+                //  MOJ NACIN,  BEZ SPOLJNIH KLJUCENA AKCIJA ID i DODATNE USLUGE
+                if (akcija != null)
+                {
+                    return (cena - (cena * (akcija.Popust / 100.0))) * kolicina;
+                }
+                else
+                {
+                    return cena * kolicina;
+                }
+                
+
+                /*
                 try
                 {
                     return (cena - (cena * (akcija.Popust / 100.0))) * kolicina;
@@ -68,17 +79,23 @@ namespace POP_SF_06_2016_GUI.Model
                 {
                 }
                 return cena * kolicina;
+                */
+                
             }
             set { cenaSaPopustom = value; }
-        }
-
-        private Akcija akcija;
+        }        
 
         public Akcija Akcija
         {
             get { return akcija; }
             set { akcija = value; }
         }
+
+        //public bool Obrisan
+        //{
+        //    get { return obrisan; }
+        //    set { obrisan = value; }
+        //}
 
         public ProdajaStavke()
         {
@@ -93,11 +110,9 @@ namespace POP_SF_06_2016_GUI.Model
             this.cena = cena;
             this.ukupnaCena = ukupnaCena;
             this.cenaSaPopustom = cenaSaPopustom;
-            this.akcija = akcija;            
+            this.akcija = akcija;
+            //this.obrisan = obrisan;
         }
-
-
-
         
         public static void ObrisiStavkeProdaje()
         {
@@ -162,6 +177,7 @@ namespace POP_SF_06_2016_GUI.Model
                         prodajaStavke.Naziv = namestaj.Naziv;
                         prodajaStavke.Cena = namestaj.Cena;
                         prodajaStavke.Akcija = namestaj.Akcija;
+                        //prodajaStavke.Obrisan = namestaj.Obrisan;
 
                         stavke.Add(prodajaStavke);
                     }
@@ -197,16 +213,18 @@ namespace POP_SF_06_2016_GUI.Model
             }
         }        
 
-        public static void ClearTable()
+        public static void ClearTable(int prodajaId)
         {
             using (SqlConnection conn = new SqlConnection(Projekat.CONNECTION_STRING))
             {
                 conn.Open();
 
-                SqlCommand command = conn.CreateCommand();
-                command.CommandText = @"DELETE FROM PRODAJA_ITEM";
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = @"UPDATE PRODAJA_STAVKE SET OBRISAN=1 WHERE PRODAJA_ID=@PRODAJA_ID";
 
-                command.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("PRODAJA_ID", prodajaId);
+
+                cmd.ExecuteNonQuery();
             }
         }
 

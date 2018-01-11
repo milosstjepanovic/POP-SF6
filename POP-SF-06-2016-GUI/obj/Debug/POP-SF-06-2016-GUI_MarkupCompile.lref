@@ -1,10 +1,8 @@
 ﻿
-
+FC:\POP-SF6\POP-SF-06-2016-GUI\App.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddChangeAkcijaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddChangeDodatnaUslugaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddChangeKorisnikWindow.xaml;;
-FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddChangeProdajaWindow.xaml;;
-FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddChangeStavkeWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddProdajaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddTipNamestajaW.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AdministratorWindow.xaml;;
@@ -12,6 +10,7 @@ FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AkcijaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\DodatnaUslugaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\KorisnikWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\LoginWindow.xaml;;
+FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\AddNamestajWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\NamestajWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\ProdajaWindow.xaml;;
 FC:\POP-SF6\POP-SF-06-2016-GUI\GUI\TipNamestajaWindow.xaml;;

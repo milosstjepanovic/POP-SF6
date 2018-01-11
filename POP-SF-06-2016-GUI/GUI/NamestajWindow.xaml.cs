@@ -30,7 +30,6 @@ namespace POP_SF_06_2016_GUI.GUI
         public NamestajWindow()
         {
             InitializeComponent();
-
             cvs = new CollectionViewSource();
             cvs.Source = Projekat.Instance.Namestaj;
 
@@ -42,11 +41,13 @@ namespace POP_SF_06_2016_GUI.GUI
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            cmbPretraga.Items.Add("");
             cmbPretraga.Items.Add("Nazivu");
             cmbPretraga.Items.Add("Tipu namestaja");
             cmbPretraga.SelectedIndex = 0;
 
             var namestajSort = new List<string>();
+            namestajSort.Add("");
             namestajSort.Add("Nazivu");
             namestajSort.Add("Kolicini");
             namestajSort.Add("Ceni");
@@ -138,6 +139,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (namestajSort)
                 {
+                    case "":
+                        cmbSortiranje.SelectedIndex = 0;
+                        dgNamestaj.ItemsSource = view;
+                        break;
                     case "Nazivu":
                         dgNamestaj.ItemsSource = Projekat.Instance.Namestaj.OrderBy(x => x.Naziv);
                         break;
@@ -162,15 +167,18 @@ namespace POP_SF_06_2016_GUI.GUI
         private void Pretraga(object sender, FilterEventArgs e)
         {
             string cmb = cmbPretraga.SelectedItem.ToString();
-            string tb = tbPretrazi.Text;
+            string tb = tbPretrazi.Text.ToLower();
             Namestaj namestaj = e.Item as Namestaj;
             switch (cmb)
             {
+                case "":
+                    
+                    break;
                 case "Nazivu":
-                    e.Accepted = namestaj.Naziv.ToString().Contains(tb);
+                    e.Accepted = namestaj.Naziv.ToString().ToLower().Contains(tb);
                     break;                
                 case "Tipu namestaja":
-                    e.Accepted = namestaj.TipNamestaja.Naziv.ToString().Contains(tb);
+                    e.Accepted = namestaj.TipNamestaja.Naziv.ToString().ToLower().Contains(tb);
                     break;
                 default:
                     break;

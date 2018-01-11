@@ -6,6 +6,30 @@
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
         Title="AddChangeDodatnaUslugaWindow" Height="275.467" Width="358.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="65,50,0,0" VerticalAlignment="Top" Width="58"/>
         <Label Content="Cena:" HorizontalAlignment="Left" Margin="65,90,0,0" VerticalAlignment="Top" Width="58"/>
@@ -13,10 +37,10 @@
                  Name="tbNaziv" Text="{Binding Path=Naziv}"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="142,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
                  Name="tbCena" Text="{Binding Path=Cena}"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="65,164,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj"
-                Click="btnSacuvaj_Click"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="187,164,0,0" VerticalAlignment="Top" Width="75" Name="btnIzlaz"
-                Click="btnIzlaz_Click"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="60,172,0,0" VerticalAlignment="Top" Width="82" Name="btnSacuvaj"
+                Click="btnSacuvaj_Click" Height="30"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="198,172,0,0" VerticalAlignment="Top" Width="82" Name="btnIzlaz"
+                Click="btnIzlaz_Click" Height="30"/>
 
     </Grid>
 </Window>

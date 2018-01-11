@@ -6,20 +6,42 @@
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
         Title="AdministratorWindow" Height="373.6" Width="509.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/login2.jpg" Opacity="0.4"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button Content="Korisnici" HorizontalAlignment="Left" Margin="55,82,0,0" VerticalAlignment="Top" Width="95" 
-                Click="btnKorisnici_Click" Height="28" Name="btnKorisnici"/>
-        <Button Content="Namestaj" HorizontalAlignment="Left" Margin="199,82,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+        <Button Content="Korisnici" HorizontalAlignment="Left" Margin="45,82,0,0" VerticalAlignment="Top" Width="95" 
+                Click="btnKorisnici_Click" Height="35" Name="btnKorisnici"/>
+        <Button Content="Namestaj" HorizontalAlignment="Left" Margin="206,46,0,0" VerticalAlignment="Top" Width="95" Height="35" 
                 Click="btnNamestaj_Click" Name="btnNamestaj"/>
-        <Button Content="Akcije" HorizontalAlignment="Left" Margin="55,146,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+        <Button Content="Akcije" HorizontalAlignment="Left" Margin="45,146,0,0" VerticalAlignment="Top" Width="95" Height="35" 
                 Click="btnAkcije_Click" Name="btnAkcije"/>
-        <Button Content="Tipovi namestaja" HorizontalAlignment="Left" Margin="354,82,0,0" VerticalAlignment="Top" Width="103" Height="28" 
+        <Button Content="Tipovi namestaja" HorizontalAlignment="Left" Margin="365,82,0,0" VerticalAlignment="Top" Width="103" Height="35" 
                 Name="btnTipoviNamestaja" Click="btnTipoviNamestaja_Click"/>
-        <Button Content="Prodaja" HorizontalAlignment="Left" Margin="199,146,0,0" VerticalAlignment="Top" Width="95" Height="28" 
+        <Button Content="Prodaja" HorizontalAlignment="Left" Margin="206,110,0,0" VerticalAlignment="Top" Width="95" Height="35" 
                 Name="btnProdaja" Click="btnProdaja_Click"/>
-        <Button Content="Izloguj se" HorizontalAlignment="Left" Margin="199,252,0,0" VerticalAlignment="Top" Width="95" Height="28"
+        <Button Content="Izloguj se" HorizontalAlignment="Left" Margin="206,216,0,0" VerticalAlignment="Top" Width="95" Height="35"
                 Name="btnIzloguj" Click="btnIzloguj_Click"/>
-        <Button Content="Dodatne usluge" HorizontalAlignment="Left" Margin="354,146,0,0" VerticalAlignment="Top" Width="103" Height="28"
+        <Button Content="Dodatne usluge" HorizontalAlignment="Left" Margin="365,146,0,0" VerticalAlignment="Top" Width="103" Height="35"
                 Name="btnDodatneUsluge" Click="btnDodatneUsluge_Click"/>
 
     </Grid>

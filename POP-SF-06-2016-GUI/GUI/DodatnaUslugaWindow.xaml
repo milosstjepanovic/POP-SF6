@@ -6,23 +6,47 @@
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
         Title="DodatnaUslugaWindow" Height="370.8" Width="655.457" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <DataGrid Name="dgDodatneUsluge" HorizontalAlignment="Left" Height="269" VerticalAlignment="Top" Width="447" IsReadOnly="True" CanUserAddRows="False"
                   AutoGenerateColumns="True" AutoGeneratingColumn="dgDodatneUsluge_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaUsluga}" Margin="0,49,0,0"/>
-        <Button Content="Dodaj uslugu" HorizontalAlignment="Right" Margin="0,49,34.8,0" VerticalAlignment="Top" Width="83" Height="30"
+        <Button Content="Dodaj uslugu" HorizontalAlignment="Right" Margin="0,49,34.8,0" VerticalAlignment="Top" Width="116" Height="40"
                 Name="btnDodaj" Click="btnDodaj_Click"/>
-        <Button Content="Izmeni uslugu" HorizontalAlignment="Right" Margin="0,103,34.8,0" VerticalAlignment="Top" Width="83" Height="30"
+        <Button Content="Izmeni uslugu" HorizontalAlignment="Right" Margin="0,108,34.8,0" VerticalAlignment="Top" Width="116" Height="40"
                 Name="btnIzmeni" Click="btnIzmeni_Click"/>
-        <Button Content="Obrisi uslugu" HorizontalAlignment="Right" Margin="0,161,34.8,0" VerticalAlignment="Top" Width="83" Height="30"
+        <Button Content="Obrisi uslugu" HorizontalAlignment="Right" Margin="0,168,34.8,0" VerticalAlignment="Top" Width="116" Height="40"
                 Name="btnObrisi" Click="btnObrisi_Click"/>
-        <Button Content="Izlaz" HorizontalAlignment="Right" Margin="0,288,34.8,0" VerticalAlignment="Top" Width="83" Height="30"
+        <Button Content="Izlaz" HorizontalAlignment="Right" Margin="0,278,34.8,0" VerticalAlignment="Top" Width="116" Height="40"
                 Name="btnIzlaz" Click="btnIzlaz_Click"/>
-        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="284,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="268,18,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="356,21,0,0" VerticalAlignment="Top" Width="91" Name="cmbSortiranje" 
                   SelectionChanged="cmbSortiranje_SelectionChanged"/>
-        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="53"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="68,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"
-                 Name="tbPretrazi"/>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,18,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="76,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"
+                 Name="tbPretrazi" TextChanged="tbPretrazi_TextChanged"/>
 
 
     </Grid>

@@ -5,22 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AkcijaWindow" Height="390" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AkcijaWindow" Height="425.2" Width="741" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <DataGrid Name="dgAkcija" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="548" IsReadOnly="True" CanUserAddRows="False" 
-                  Margin="0,53,0,0" AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaAkcija}"/>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,56,24.4,269.8" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,112,24.4,213.8" Name="btnIzmeniAkciju" 
+                  Margin="0,74,0,0" AutoGenerateColumns="True" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" SelectedItem="{Binding Path=IzabranaAkcija}"/>
+        <Button Width="105" HorizontalAlignment="Right" Margin="0,77,24.4,279" Name="btnDodajAkciju" Click="btnDodajAkciju_Click">Dodaj akciju</Button>
+        <Button Width="105" HorizontalAlignment="Right" Margin="0,133,24.4,223" Name="btnIzmeniAkciju" 
                 Click="btnIzmeniAkciju_Click">Izmeni akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,169,24.4,156.8" Name="btnObrisiAkciju" 
+        <Button Width="105" HorizontalAlignment="Right" Margin="0,190,24.4,166" Name="btnObrisiAkciju" 
                 Click="btnObrisiAkciju_Click">Obrisi akciju</Button>
-        <Button Width="80" HorizontalAlignment="Right" Margin="0,291,24.4,34.8" Name="btnIzlaz" 
+        <Button Width="105" HorizontalAlignment="Right" Margin="0,309,24.4,47" Name="btnIzlaz" 
                 Click="btnIzlaz_Click">Izlaz</Button>
-        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
-                 Name="tbPretrazi"/>
-        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="374,22,0,0" VerticalAlignment="Top" Width="68"/>
-        <ComboBox HorizontalAlignment="Left" Margin="447,22,0,0" VerticalAlignment="Top" Width="101" Name="cmbSortiranje"
+        <Label Content="Pretrazi po:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="86"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="86,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"
+                 Name="tbPretrazi" TextChanged="tbPretrazi_TextChanged"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="356,40,0,0" VerticalAlignment="Top" Width="86"/>
+        <ComboBox HorizontalAlignment="Left" Margin="447,43,0,0" VerticalAlignment="Top" Width="101" Name="cmbSortiranje"
                   SelectionChanged="cmbSortiranje_SelectionChanged"/>
+        <ComboBox HorizontalAlignment="Left" Margin="86,13,0,0" VerticalAlignment="Top" Width="138" 
+                  Name="cmbPretraga"/>
+        <Label Content="Vrednost:" HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top" Width="73"/>
     </Grid>
 </Window>

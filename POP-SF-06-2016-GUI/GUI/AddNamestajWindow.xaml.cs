@@ -55,6 +55,22 @@ namespace POP_SF_06_2016_GUI.GUI
 
         }
 
+        private bool Validacija()
+        {
+            BindingExpression bindEx1 = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+            bindEx1.UpdateSource();
+            BindingExpression bindEx2 = tbCena.GetBindingExpression(TextBox.TextProperty);
+            bindEx2.UpdateSource();
+            BindingExpression bindEx3 = tbKolicina.GetBindingExpression(TextBox.TextProperty);
+            bindEx3.UpdateSource();
+            
+            if (Validation.GetHasError(tbNaziv) == true || Validation.GetHasError(tbCena) == true || Validation.GetHasError(tbKolicina) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void btnIzlaz_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -62,6 +78,10 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
+            if (Validacija() == true)
+            {
+                return;
+            }
             //citaj sa diska
             var ucitaniNamestaji = Projekat.Instance.Namestaj;
             TipNamestaja izabraniTipNamestaja = (TipNamestaja)cmbTipNamestaja.SelectedItem;

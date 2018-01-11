@@ -3,29 +3,95 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
         Title="AddNamestajWindow" Height="382.032" Width="374.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="43,21,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Cena:" HorizontalAlignment="Left" Margin="43,60,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Kolicina:" HorizontalAlignment="Left" Margin="43,99,0,0" VerticalAlignment="Top" Width="86"/>
         <Label Content="Tip namestaja:" HorizontalAlignment="Left" Margin="43,138,0,0" VerticalAlignment="Top"/>
         <Label Content="Popust  %:" HorizontalAlignment="Left" Margin="43,177,0,0" VerticalAlignment="Top" Width="86"/>
-        
+
         <TextBox Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="155,21,0,0" 
-                 Name="tbNaziv" Text="{Binding Path=Naziv}" />
+                 x:Name="tbNaziv">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <TextBox HorizontalAlignment="Left" Height="23" Margin="155,60,0,0" VerticalAlignment="Top"
-                 Width="138" Name="tbCena" Text="{Binding Path=Cena}" />
+                 MaxLength="9" Width="138" x:Name="tbCena">
+            <TextBox.Text>
+                <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <TextBox HorizontalAlignment="Left" Height="23" Margin="155,99,0,0" VerticalAlignment="Top"
-                 Width="138" Name="tbKolicina" Text="{Binding Path=KolicinaUMagacinu}" />
+                 Width="138" x:Name="tbKolicina">
+            <TextBox.Text>
+                <Binding Path="KolicinaUMagacinu" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="138" Margin="155,138,0,0"
-                  Name="cmbTipNamestaja" SelectedItem="{Binding Path=TipNamestaja}" />
+                  x:Name="cmbTipNamestaja" SelectedItem="{Binding Path=TipNamestaja}" />
         <ComboBox HorizontalAlignment="Left" Margin="155,180,0,0" VerticalAlignment="Top" Width="138"
-                  Name="cmbAkcija" SelectedItem="{Binding Path=Akcija}"/>
-        
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnSacuvaj" Click="btnSacuvaj_Click" Width="80" Height="25" Margin="0,276,219.8,0">Sacuvaj</Button>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,276,86.8,0" Width="80" Height="25">Zatvori</Button>
-       
+                  x:Name="cmbAkcija" SelectedItem="{Binding Path=Akcija}"/>
+
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="btnSacuvaj" Click="btnSacuvaj_Click" Width="100" Height="30" Margin="0,276,219.8,0" Content="Sacuvaj">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbNaziv}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbCena}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbKolicina}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,276,65.8,0" Width="100" Height="30">Zatvori</Button>
+
 
     </Grid>
 

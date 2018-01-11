@@ -23,14 +23,17 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class AkcijaWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs;
 
         public Akcija IzabranaAkcija { get; set; }
 
         public AkcijaWindow()
         {
             InitializeComponent();
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.Akcija;
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Akcija);
+            view = cvs.View;
             view.Filter = FilterNeobrisanihAkcija;
 
             dgAkcija.ItemsSource = view;
@@ -38,7 +41,14 @@ namespace POP_SF_06_2016_GUI.GUI
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            cmbPretraga.Items.Add("");
+            cmbPretraga.Items.Add("Nazivu");
+            cmbPretraga.Items.Add("Datumu pocetka");
+            cmbPretraga.Items.Add("Datumu zavrsetka");
+            cmbPretraga.SelectedIndex = 0;
+
             var akcijaSort = new List<string>();
+            akcijaSort.Add("");
             akcijaSort.Add("Nazivu");
             akcijaSort.Add("Popustu");
             akcijaSort.Add("Dat. pocetka");
@@ -125,6 +135,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (akcijaSort)
                 {
+                    case "":
+                        cmbSortiranje.SelectedIndex = 0;
+                        dgAkcija.ItemsSource = view;
+                        break;
                     case "Nazivu":
                         dgAkcija.ItemsSource = Projekat.Instance.Akcija.OrderBy(x => x.Naziv);
                         break;
@@ -141,6 +155,34 @@ namespace POP_SF_06_2016_GUI.GUI
                         break;
                 }
             }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {
+            string cmb = cmbPretraga.SelectedItem.ToString();
+            string tb = tbPretrazi.Text.ToLower();
+            Akcija akcija = (Akcija)e.Item;
+            switch (cmb)
+            {
+                case "":
+                    break;
+                case "Nazivu":
+                    e.Accepted = akcija.Naziv.ToString().ToLower().Contains(tb);
+                    break;
+                case "Datumu pocetka":
+                    e.Accepted = akcija.DatumPocetka.ToString().ToLower().Contains(tb);
+                    break;
+                case "Datumu zavrsetka":
+                    e.Accepted = akcija.DatumZavrsetka.ToString().ToLower().Contains(tb);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

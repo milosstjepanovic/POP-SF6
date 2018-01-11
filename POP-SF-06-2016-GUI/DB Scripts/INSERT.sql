@@ -4,8 +4,6 @@ INSERT INTO KORISNIK
 		   ('Nikola', 'Nikolic', 'nikola', '123', 1, 0),
 		   ('Ilija', 'Ilic', 'ilija', '123', 1, 0)
 GO
-		   
-
 
 INSERT INTO TIP_NAMESTAJA 
 	VALUES ('Kauc', 0),
@@ -14,11 +12,10 @@ INSERT INTO TIP_NAMESTAJA
 		   ('Krevet', 0)
 GO
 
-
 INSERT INTO AKCIJA 
-	VALUES ('Novogodisnja 30%', CONVERT(DATE, '25.12.2017', 104), CONVERT(DATE, '05.01.2018', 104), 30, 0),
-		   ('Bozicna 20%', CONVERT(DATE, '06.01.2018', 104), CONVERT(DATE, '08.01.2018', 104), 20, 0),
-		   ('Januarska 15%', CONVERT(DATE, '25.12.2017', 104), CONVERT(DATE, '05.01.2018', 104), 15, 0)
+	VALUES ('Novogodisnja', CONVERT(DATE, '25.12.2017', 104), CONVERT(DATE, '05.01.2018', 104), 30, 0),
+		   ('Bozicna', CONVERT(DATE, '06.01.2018', 104), CONVERT(DATE, '08.01.2018', 104), 20, 0),
+		   ('Januarska', CONVERT(DATE, '25.12.2017', 104), CONVERT(DATE, '05.01.2018', 104), 15, 0)
 GO
 
 
@@ -51,19 +48,4 @@ INSERT INTO PRODAJA_STAVKE
 	VALUES (1, 1, 2, 0),
 		   (1, 2, 4, 0)
 GO
-
-
-
-/*
-INSERT INTO AKCIJA_STAVKE 
-	VALUES (1, 1, 0),
-		   (1, 2, 0),
-		   (2, 3, 0),
-		   (3, 5, 0),
-		   (3, 7, 0),
-		   (3, 8, 0)
-GO
-*/
-
-
 

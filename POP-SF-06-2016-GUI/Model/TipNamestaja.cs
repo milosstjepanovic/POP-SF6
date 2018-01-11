@@ -156,10 +156,7 @@ namespace POP.Model
                 cmd.Parameters.AddWithValue("OBRISAN", tn.Obrisan);
                 
                 cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "UPDATE NAMESTAJ SET OBRISAN=1 WHERE TIP_NAMESTAJA=@Id";
-                cmd.ExecuteNonQuery();
-
+                
                 //azuriram stanje modela
                 foreach (var tipNam in Projekat.Instance.TipoviNamestaja)
                 {

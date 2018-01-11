@@ -81,6 +81,11 @@ namespace POP_SF_06_2016_GUI.GUI
             return ((Namestaj)obj).Obrisan == false;
         }
 
+        //private bool FilterKorpe(object obj)
+        //{
+        //    return ((ProdajaStavke)obj).Obrisan == false;
+        //}
+
 
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
@@ -94,7 +99,8 @@ namespace POP_SF_06_2016_GUI.GUI
                         int kolicina = Int32.Parse(tbKolicina.Text);
                         if (kolicina > IzabraniNamestaj.KolicinaUMagacinu)
                         {
-                            throw new Exception();
+                            MessageBox.Show("Uneli ste vecu kolicinu nego sto ima na stanju!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
 
                         ProdajaStavke prodajaStavke = new ProdajaStavke(IzabraniNamestaj.Id, IzabraniNamestaj.Naziv, kolicina,
@@ -110,6 +116,9 @@ namespace POP_SF_06_2016_GUI.GUI
                         }
 
                         Namestaj.PovecajSmanjiKolicinu(IzabraniNamestaj.Id, false, kolicina);
+                        Namestaj.Izmeni(IzabraniNamestaj);
+
+                        //dgKorpa.ItemsSource = prodaja;
                         viewKorpa.Refresh();
                         viewNamestaj.Refresh();
                         prodaja.UkupnaCena = ProdajaNamestaja.IzracunajUkupnuCenu();
@@ -117,17 +126,17 @@ namespace POP_SF_06_2016_GUI.GUI
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Količina nije validna!");
+                        MessageBox.Show("Kolicina nije validna!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nema više izabranog nameštaja!");
+                    MessageBox.Show("Nema vise izabranog namestaja na lageru!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Nije selektovan nameštaj!");
+                MessageBox.Show("Niste selektovali nijedan namestaj!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -135,33 +144,52 @@ namespace POP_SF_06_2016_GUI.GUI
 
         private void btnUkloni_Click(object sender, RoutedEventArgs e)
         {
+            if (IzabraneStavke != null)
+            {
+                ProdajaStavke prodajaStavke = new ProdajaStavke(IzabraneStavke.Id, IzabraneStavke.Naziv, IzabraneStavke.Kolicina,
+                               IzabraneStavke.Cena, IzabraneStavke.UkupnaCena, IzabraneStavke.CenaSaPopustom, IzabraneStavke.Akcija);
 
+                Namestaj.PovecajSmanjiKolicinu(IzabraneStavke.Id, true, IzabraneStavke.Kolicina);
+                Projekat.Instance.ProdajaStavke.Remove(prodajaStavke);
+
+                ProdajaNamestaja.Obrisi(prodaja);
+
+                ObrisiProdajaStavke();
+
+                
+
+                viewNamestaj.Refresh();
+                viewKorpa.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijednu stavku!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnPotvrdi_Click(object sender, RoutedEventArgs e)
         {
-            /*if (prodaja.DodatnaUsluga.Cena != 0)
-            {*/
+            if (prodaja.DodatnaUsluga != null)
+            {
                 prodaja.UkupnaCena = prodaja.UkupnaCena + prodaja.DodatnaUsluga.Cena;
-                Projekat.Instance.ProdajaNamestaja.Add(prodaja);
-
+                
                 ProdajaNamestaja.Dodaj(prodaja);
                 DodajProdajaStavke();
 
                 Projekat.Instance.ProdajaStavke.Clear();
                 Close();
 
-            /*} else
+            } else
             {
                 prodaja.UkupnaCena = prodaja.UkupnaCena;
-                Projekat.Instance.ProdajaNamestaja.Add(prodaja);
+                //Projekat.Instance.ProdajaNamestaja.Add(prodaja);
 
                 ProdajaNamestaja.Dodaj(prodaja);
                 DodajProdajaStavke();
 
                 Projekat.Instance.ProdajaStavke.Clear();
                 Close();
-            }*/
+            }
         }
 
 
@@ -170,6 +198,14 @@ namespace POP_SF_06_2016_GUI.GUI
             foreach (ProdajaStavke stavke in Projekat.Instance.ProdajaStavke)
             {
                 ProdajaStavke.DodajStavke(prodaja.Id, stavke.Id, stavke.Kolicina);
+            }
+        }
+
+        private void ObrisiProdajaStavke()
+        {
+            foreach (ProdajaStavke stavke in Projekat.Instance.ProdajaStavke)
+            {
+                ProdajaStavke.ClearTable(prodaja.Id);
             }
         }
 

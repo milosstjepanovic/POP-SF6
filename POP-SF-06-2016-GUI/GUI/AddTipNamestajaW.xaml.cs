@@ -45,8 +45,26 @@ namespace POP_SF_06_2016_GUI.GUI
             tbNaziv.DataContext = tipNamestaja;
         }
 
+        private bool Validacija()
+        {
+            BindingExpression bindEx1 = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+            bindEx1.UpdateSource();
+
+            if (Validation.GetHasError(tbNaziv) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
+            if (Validacija() == true)
+            {
+                return;
+            }
+
             var ucitaniTipoviNamestaja = Projekat.Instance.TipoviNamestaja;
 
             switch (operacija)

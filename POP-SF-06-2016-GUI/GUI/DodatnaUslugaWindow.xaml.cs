@@ -23,6 +23,7 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class DodatnaUslugaWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs;
 
         public DodatnaUsluga IzabranaUsluga { get; set; }
         
@@ -30,16 +31,18 @@ namespace POP_SF_06_2016_GUI.GUI
     public DodatnaUslugaWindow()
         {
             InitializeComponent();
-
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.DodatnaUsluga;
+            view = cvs.View;
             view.Filter = FilterNeobrisanihUsluga;
 
             dgDodatneUsluge.ItemsSource = view;
             dgDodatneUsluge.DataContext = this;
             dgDodatneUsluge.IsSynchronizedWithCurrentItem = true;
-            dgDodatneUsluge.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+            dgDodatneUsluge.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);       
 
             var uslugeSort = new List<string>();
+            uslugeSort.Add("");
             uslugeSort.Add("Nazivu");
             uslugeSort.Add("Ceni");           
 
@@ -122,6 +125,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (uslugeSort)
                 {
+                    case "":
+                        cmbSortiranje.SelectedIndex = 0;
+                        dgDodatneUsluge.ItemsSource = view;
+                        break;
                     case "Nazivu":
                         dgDodatneUsluge.ItemsSource = Projekat.Instance.DodatnaUsluga.OrderBy(x => x.Naziv);
                         break;
@@ -132,6 +139,20 @@ namespace POP_SF_06_2016_GUI.GUI
                         break;
                 }
             }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {            
+            string tb = tbPretrazi.Text.ToLower();
+            DodatnaUsluga usluga = (DodatnaUsluga)e.Item;
+            
+            e.Accepted = usluga.Naziv.ToString().ToLower().Contains(tb);
+                  
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

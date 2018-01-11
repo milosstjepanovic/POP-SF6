@@ -6,13 +6,55 @@
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
         Title="AddChangeAkcijaWindow" Height="368.8" Width="458.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label Content="Naziv:" HorizontalAlignment="Left" Margin="64,44,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Name="tbNaziv" 
-                 Text="{Binding Path=Naziv}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="222,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Name="tbNaziv">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
         <Label Content="Popust:" HorizontalAlignment="Left" Margin="64,77,0,0" VerticalAlignment="Top" Width="70"/>
+        
         <TextBox HorizontalAlignment="Left" Height="23" Margin="222,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" 
-                 Name="tbPopust" Text="{Binding Path=Popust}"/>
+                 Name="tbPopust">
+            <TextBox.Text>
+                <Binding Path="Popust" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
         <Label Content="Datum pocetka:" HorizontalAlignment="Left" Margin="64,116,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Margin="222,116,0,0" VerticalAlignment="Top" Width="134" 
                     Name="dpDatumPocetka" Text="{Binding Path=DatumPocetka,StringFormat=dd/MM/yyyy}"/>
@@ -21,13 +63,32 @@
                     Name="dpDatumZavrsetka" Text="{Binding Path=DatumZavrsetka,StringFormat=dd/MM/yyyy}"/>
         <!--ComboBox HorizontalAlignment="Left" Margin="179,170,0,0" VerticalAlignment="Top" Width="134" Name="cmbNamestaj"
                   SelectedItem="{Binding Path=NamestajPopust}"/-->
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="100,265,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj"
-                Click="btnSacuvaj_Click" RenderTransformOrigin="0.624,2.781" Height="25"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="255,265,0,0" VerticalAlignment="Top" Width="75" Name="btnOdustani" 
-                Click="btnOdustani_Click" RenderTransformOrigin="0.485,1.5" Height="25"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="84,265,0,0" VerticalAlignment="Top" Width="101" Name="btnSacuvaj"
+                Click="btnSacuvaj_Click" RenderTransformOrigin="0.624,2.781" Height="30">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbNaziv}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Background" Value="#FF0B1488"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="14"/>
+
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
 
-
-
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="250,265,0,0" VerticalAlignment="Top" Width="101" Name="btnOdustani" 
+                Click="btnOdustani_Click" RenderTransformOrigin="0.485,1.5" Height="30"/>
     </Grid>
 </Window>

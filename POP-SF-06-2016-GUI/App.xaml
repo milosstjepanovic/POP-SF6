@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:POP_SF_06_2016_GUI"
              StartupUri="GUI/LoginWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="PrikazIzmena" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+        </Style>
     </Application.Resources>
 </Application>

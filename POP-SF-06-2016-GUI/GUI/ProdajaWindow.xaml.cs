@@ -22,14 +22,17 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class ProdajaWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs;
 
         public ProdajaNamestaja IzabranaProdaja { get; set; }
 
         public ProdajaWindow()
         {
             InitializeComponent();
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.ProdajaNamestaja;
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajaNamestaja);
+            view = cvs.View;
             view.Filter = FilterNeobrisanihProdaja;
 
             dgProdajaNamestaja.ItemsSource = view;
@@ -37,7 +40,14 @@ namespace POP_SF_06_2016_GUI.GUI
             dgProdajaNamestaja.IsSynchronizedWithCurrentItem = true;
             dgProdajaNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            cmbPretraga.Items.Add("");
+            cmbPretraga.Items.Add("Kupcu");
+            cmbPretraga.Items.Add("Broju racuna");
+            cmbPretraga.Items.Add("Datumu prodaje");
+            cmbPretraga.SelectedIndex = 0;
+
             var prodajaSort = new List<string>();
+            prodajaSort.Add("");
             prodajaSort.Add("Br. racuna");
             prodajaSort.Add("Datum prodaje");
             prodajaSort.Add("Kupac");
@@ -98,6 +108,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (prodajaSort)
                 {
+                    case "":
+                        cmbSortiranje.SelectedIndex = 0;
+                        dgProdajaNamestaja.ItemsSource = view;
+                        break;
                     case "Br. racuna":
                         dgProdajaNamestaja.ItemsSource = Projekat.Instance.ProdajaNamestaja.OrderBy(x => x.BrojRacuna);
                         break;
@@ -111,6 +125,35 @@ namespace POP_SF_06_2016_GUI.GUI
                         break;
                 }
             }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {
+            string cmb = cmbPretraga.SelectedItem.ToString();
+            string tb = tbPretrazi.Text.ToLower();
+            ProdajaNamestaja prodaja = (ProdajaNamestaja)e.Item;
+            switch (cmb)
+            {
+                case "":
+
+                    break;
+                case "Kupcu":
+                    e.Accepted = prodaja.Kupac.ToString().ToLower().Contains(tb);
+                    break;
+                case "Broju racuna":
+                    e.Accepted = prodaja.BrojRacuna.ToString().ToLower().Contains(tb);
+                    break;
+                case "Datumu prodaje":
+                    e.Accepted = prodaja.DatumProdaje.ToString().ToLower().Contains(tb);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

@@ -14,9 +14,7 @@ namespace POP_SF_06_2016_GUI.GUI
         public LoginWindow()
         {
             InitializeComponent();
-            tbKorisnickoIme.Focus();
-            //DodatnaUsluga.UcitajSveDodatneUsluge();
-            
+            tbKorisnickoIme.Focus();            
         }
         
         private void btnPrijaviSe_Click(object sender, RoutedEventArgs e)

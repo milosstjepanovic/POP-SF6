@@ -5,25 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AddChangeKorisnikWindow" Height="323.785" Width="310.976" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AddChangeKorisnikWindow" Height="346.585" Width="321.776" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Label Content="Ime:" HorizontalAlignment="Left" Margin="41,29,0,0" VerticalAlignment="Top" Width="62"/>
-        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="41,60,0,0" VerticalAlignment="Top" Width="62"/>
-        <Label Content="Kor. ime:" HorizontalAlignment="Left" Margin="41,91,0,0" VerticalAlignment="Top" Width="62"/>
-        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="41,122,0,0" VerticalAlignment="Top" Width="62"/>
-        <Label Content="Tip korisnika:" HorizontalAlignment="Left" Margin="41,152,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label Content="Ime:" HorizontalAlignment="Left" Margin="41,29,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="41,65,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label Content="Kor. ime:" HorizontalAlignment="Left" Margin="41,104,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Lozinka:" HorizontalAlignment="Left" Margin="41,145,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Tip korisnika:" HorizontalAlignment="Left" Margin="41,183,0,0" VerticalAlignment="Top" Width="104"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="149,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
                  Name="tbIme" Text="{Binding Path=Ime}"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
                  Name="tbPrezime" Text="{Binding Path=Prezime}"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
                  Name="tbKorIme" Text="{Binding Path=KorisnickoIme}"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="149,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
                  Name="tbLozinka" Text="{Binding Path=Lozinka}"/>
-        <ComboBox HorizontalAlignment="Left" Margin="150,155,0,0" VerticalAlignment="Top" Width="120" 
+        <ComboBox HorizontalAlignment="Left" Margin="150,186,0,0" VerticalAlignment="Top" Width="120" 
                   Name="cmbTipKorisnika" SelectedItem="{Binding Path=TipKorisnika}"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="56,240,0,0" VerticalAlignment="Top" Width="80" Name="btnSacuvaj" Click="btnSacuvaj_Click" Height="25"/>
-        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="181,240,0,0" VerticalAlignment="Top" Width="80" Name="btnZatvori" Click="btnZatvori_Click" Height="25"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="50,262,0,0" VerticalAlignment="Top" Width="87" Name="btnSacuvaj" Click="btnSacuvaj_Click" Height="30"/>
+        <Button Content="Zatvori" HorizontalAlignment="Left" Margin="182,262,0,0" VerticalAlignment="Top" Width="87" Name="btnZatvori" Click="btnZatvori_Click" Height="30"/>
 
 
 

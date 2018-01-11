@@ -5,13 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="AddTipNamestajaW" Height="148.537" Width="296.341" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AddTipNamestajaW" Height="167.737" Width="317.141" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="30,23,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="128,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
-                 Name="tbNaziv" Text="{Binding Path=Naziv}"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj" Click="btnSacuvaj_Click"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="173,80,0,0" VerticalAlignment="Top" Width="75" Name="Odustani" Click="Odustani_Click"/>
+        <Label Content="Naziv:" HorizontalAlignment="Left" Margin="44,27,0,0" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="142,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                 Name="tbNaziv">
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidString/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="44,95,0,0" VerticalAlignment="Top" Width="75" Name="btnSacuvaj" Click="btnSacuvaj_Click" Height="25">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbNaziv}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Background" Value="#FF0B1488"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="187,95,0,0" VerticalAlignment="Top" Width="75" Name="Odustani" Click="Odustani_Click" Height="25"/>
 
     </Grid>
 </Window>

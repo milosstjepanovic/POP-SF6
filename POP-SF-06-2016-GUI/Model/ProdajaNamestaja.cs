@@ -13,7 +13,7 @@ namespace POP.Model
 {
     public class ProdajaNamestaja : INotifyPropertyChanged
     {
-        public const double PDV = 0.02;
+        public const double PDV = 0.2;
         
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -92,7 +92,7 @@ namespace POP.Model
             {
                 if (dodatnaUsluga == null)
                 {
-                    dodatnaUsluga = DodatnaUsluga.GetById(UslugaId);
+                    dodatnaUsluga = DodatnaUsluga.GetById(uslugaId);
                 }
                 return dodatnaUsluga;
             }
@@ -141,18 +141,37 @@ namespace POP.Model
         {
             double ukupnaCena = 0;
             double cenaKomad;
+            double cenaSaPdv = 0;
 
             foreach (ProdajaStavke stavke in Projekat.Instance.ProdajaStavke)
             {
-                try
+
+                // MOJ NACIN,  BEZ SPOLJNIH KLJUCENA AKCIJA ID i DODATNE USLUGE
+                if (stavke.Akcija != null)
                 {
-                    cenaKomad = stavke.Cena - (stavke.Cena / stavke.Akcija.Popust);
+                    cenaKomad = stavke.Cena - (stavke.Cena * (stavke.Akcija.Popust / 100));
+                    cenaSaPdv = cenaKomad + (cenaKomad * PDV);
                 }
-                catch (Exception)
+                else
                 {
                     cenaKomad = stavke.Cena;
+                    //ukupnaCena += cenaKomad * stavke.Kolicina;
                 }
-                ukupnaCena += cenaKomad * stavke.Kolicina;
+                
+
+
+                    /*
+                    try
+                    {
+                        cenaKomad = stavke.Cena - (stavke.Cena / stavke.Akcija.Popust);
+                    }
+                    catch (Exception)
+                    {
+                        cenaKomad = stavke.Cena;
+                    }
+                    */
+                
+                ukupnaCena += cenaSaPdv * stavke.Kolicina;
             }
             return ukupnaCena;
         }
@@ -189,7 +208,7 @@ namespace POP.Model
 
                     //try
                     //{
-                    prodaja.DodatnaUsluga = DodatnaUsluga.GetById(prodaja.uslugaId);
+                    //    prodaja.DodatnaUsluga = DodatnaUsluga.GetById(prodaja.uslugaId);
                     //}
                     //catch (Exception) { }
 
@@ -204,13 +223,10 @@ namespace POP.Model
         {
             using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
             {
-
-
-
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"INSERT INTO prodaja (BR_RACUNA, DATUM, KUPAC, UKUPNA_CENA, ID_DODATNE_USLUGE, OBRISAN) " +
+                cmd.CommandText = $"INSERT INTO PRODAJA (BR_RACUNA, DATUM, KUPAC, UKUPNA_CENA, ID_DODATNE_USLUGE, OBRISAN) " +
                                   $"VALUES (@BR_RACUNA, @DATUM, @KUPAC, @UKUPNA_CENA, @ID_DODATNE_USLUGE, 0);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
 
@@ -220,7 +236,6 @@ namespace POP.Model
                 cmd.Parameters.AddWithValue("UKUPNA_CENA", prodaja.UkupnaCena);
                 cmd.Parameters.AddWithValue("ID_DODATNE_USLUGE", prodaja.UslugaId);
 
-
                 int newId = int.Parse(cmd.ExecuteScalar().ToString()); //ExecuteScalar izvrsava query
                 prodaja.Id = newId;
             }
@@ -228,8 +243,8 @@ namespace POP.Model
             return prodaja;
         }
 
-        /*
-        public static void Izmeni(ProdajaNamestaja prodajaN)
+        
+        public static void Izmeni(ProdajaNamestaja prodaja)
         {
             using (SqlConnection con = new SqlConnection(Projekat.CONNECTION_STRING))
             {
@@ -237,42 +252,41 @@ namespace POP.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "UPDATE NAMESTAJ SET NAZIV=@NAZIV, KOLICINA_MAG=@KOLICINA_MAG, CENA=@CENA, " +
-                                  "TIP_NAMESTAJA_ID=@TIP_NAMESTAJA_ID, AKCIJA_ID=@AKCIJA_ID, OBRISAN=@OBRISAN WHERE ID=@ID";
+                cmd.CommandText = "UPDATE PRODAJA SET BR_RACUNA=@BR_RACUNA, DATUM=@DATUM, KUPAC=@KUPAC, " +
+                                  "UKUPNA_CENA=@UKUPNA_CENA, ID_DODATNE_USLUGE=@ID_DODATNE_USLUGE, OBRISAN=@OBRISAN WHERE ID=@ID";
 
-                cmd.Parameters.AddWithValue("ID", prodajaN.Id);
-                cmd.Parameters.AddWithValue("NAZIV", prodajaN.Naziv);
-                cmd.Parameters.AddWithValue("KOLICINA_MAG", prodajaN.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("CENA", prodajaN.Cena);
-                cmd.Parameters.AddWithValue("TIP_NAMESTAJA_ID", prodajaN.TipNamestajaId);
-                cmd.Parameters.AddWithValue("AKCIJA_ID", prodajaN.AkcijaId);
-                cmd.Parameters.AddWithValue("OBRISAN", prodajaN.Obrisan);
+                cmd.Parameters.AddWithValue("ID", prodaja.Id);
+                cmd.Parameters.AddWithValue("BR_RACUNA", prodaja.BrojRacuna);
+                cmd.Parameters.AddWithValue("DATUM", prodaja.DatumProdaje);
+                cmd.Parameters.AddWithValue("KUPAC", prodaja.Kupac);
+                cmd.Parameters.AddWithValue("UKUPNA_CENA", prodaja.UkupnaCena);
+                cmd.Parameters.AddWithValue("ID_DODATNE_USLUGE", prodaja.UslugaId);
+                cmd.Parameters.AddWithValue("OBRISAN", prodaja.Obrisan);
 
                 cmd.ExecuteNonQuery();
 
                 //azuriram stanje modela
                 foreach (var p in Projekat.Instance.ProdajaNamestaja)
                 {
-                    if (p.Id == prodajaN.Id)
+                    if (p.Id == prodaja.Id)
                     {
-                        p.Naziv = prodajaN.Naziv;
-                        p.KolicinaUMagacinu = prodajaN.KolicinaUMagacinu;
-                        p.Cena = prodajaN.Cena;
-                        p.TipNamestajaId = prodajaN.TipNamestajaId;
-                        p.AkcijaId = prodajaN.AkcijaId;
-                        p.Obrisan = prodajaN.Obrisan;
+                        p.BrojRacuna = prodaja.BrojRacuna;
+                        p.DatumProdaje = prodaja.DatumProdaje;
+                        p.Kupac = prodaja.Kupac;
+                        p.UkupnaCena = prodaja.UkupnaCena;
+                        p.UslugaId = prodaja.UslugaId;
+                        p.Obrisan = prodaja.Obrisan;
                         break;
                     }
                 }
             }
         }
 
-        public static void Obrisi(Namestaj n)
+        public static void Obrisi(ProdajaNamestaja prodaja)
         {
-            n.Obrisan = true;
-            Izmeni(n);
-        }
-        */
+            prodaja.Obrisan = true;
+            Izmeni(prodaja);
+        }        
 
         #endregion
 

@@ -22,14 +22,17 @@ namespace POP_SF_06_2016_GUI.GUI
     public partial class TipNamestajaWindow : Window
     {
         private ICollectionView view;
+        private CollectionViewSource cvs;
 
         public TipNamestaja IzabraniTipNamestaja { get; set; }
 
         public TipNamestajaWindow()
         {
             InitializeComponent();
+            cvs = new CollectionViewSource();
+            cvs.Source = Projekat.Instance.TipoviNamestaja;
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipoviNamestaja);
+            view = cvs.View;
             view.Filter = FilterNeobrisanihTipova;
 
             dgTipoviNamestaja.ItemsSource = view;
@@ -38,6 +41,7 @@ namespace POP_SF_06_2016_GUI.GUI
             dgTipoviNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
             var tipNamestajaSort = new List<string>();
+            tipNamestajaSort.Add("");
             tipNamestajaSort.Add("Nazivu");            
 
             cmbSortiranje.ItemsSource = tipNamestajaSort;
@@ -123,6 +127,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (tipNamestajaSort)
                 {
+                    case "":
+                        cmbSortiranje.SelectedIndex = 0;
+                        dgTipoviNamestaja.ItemsSource = view;
+                        break;
                     case "Nazivu":
                         dgTipoviNamestaja.ItemsSource = Projekat.Instance.TipoviNamestaja.OrderBy(x => x.Naziv);
                         break;                    
@@ -130,6 +138,20 @@ namespace POP_SF_06_2016_GUI.GUI
                         break;
                 }
             }
+        }
+
+        private void Pretraga(object sender, FilterEventArgs e)
+        {
+            string tb = tbPretrazi.Text.ToLower();
+            TipNamestaja tipNam = (TipNamestaja)e.Item;
+
+            e.Accepted = tipNam.Naziv.ToString().ToLower().Contains(tb);
+
+        }
+
+        private void tbPretrazi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cvs.Filter += new FilterEventHandler(Pretraga);
         }
     }
 }

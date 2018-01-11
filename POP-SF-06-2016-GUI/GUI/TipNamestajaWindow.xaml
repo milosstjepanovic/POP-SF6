@@ -5,21 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_06_2016_GUI.GUI"
         mc:Ignorable="d"
-        Title="TipNamestajaWindow" Height="390" Width="722.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="TipNamestajaWindow" Height="390" Width="722.6" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Visibility="Visible">
+    <Window.Background>
+        <ImageBrush ImageSource="/POP-SF-06-2016-GUI;component/slike/Background11.jpg" Opacity="1.5"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF0B1488"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
         <DataGrid Name="dgTipoviNamestaja" AutoGenerateColumns="True" AutoGeneratingColumn="dgTipoviNamestaja_AutoGeneratingColumn" Grid.Row="0"  HorizontalAlignment="Left" 
                  Height="276" VerticalAlignment="Top" Width="494" IsReadOnly="True" CanUserAddRows="False" SelectedItem="{Binding Path=IzabraniTipNamestaja}" Margin="0,50,0,0"/>
-        <Button Width="114" HorizontalAlignment="Right" 
-                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,50,23,275.8">Dodaj tip namestaja</Button>
-        <Button Width="114" HorizontalAlignment="Right" 
-                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="0,100,23,225.8">Izmeni tip namestaja</Button>
-        <Button Width="114" HorizontalAlignment="Right" 
-                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="0,150,23,175.8">Obrisi tip namestaja</Button>
-        <Button Width="114" HorizontalAlignment="Right" 
-                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,291,23,34.8" RenderTransformOrigin="0.493,0.35">Izlaz</Button>
-        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="67,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="tbPretrazi"/>
-        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="332,19,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button Width="152" HorizontalAlignment="Right" 
+                Name="btnDodajNamestaj" Click="btnDodajNamestaj_Click" Margin="0,50,23,270.8" BorderBrush="Black" Background="#FF0B1488" FontWeight="Bold" FontStyle="Italic">
+            Dodaj tip namestaja
+        </Button>
+        <Button Width="152" HorizontalAlignment="Right" 
+                Name="btnIzmeniNamestaj" Click="btnIzmeniNamestaj_Click" Margin="0,108,23,212.8">Izmeni tip namestaja</Button>
+        <Button Width="152" HorizontalAlignment="Right" 
+                Name="btnObrisiNamestaj" Click="btnObrisiNamestaj_Click" Margin="0,167,23,153.8">Obrisi tip namestaja</Button>
+        <Button Width="136" HorizontalAlignment="Right" 
+                Name="btnIzlaz" Click="btnIzlaz_Click" Margin="0,286,23,34.8">Izlaz</Button>
+        <Label Content="Pretrazi:" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" Width="73" Height="25"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="78,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="tbPretrazi"
+                 TextChanged="tbPretrazi_TextChanged" BorderBrush="Black"/>
+        <Label Content="Sortiraj po:" HorizontalAlignment="Left" Margin="308,19,0,0" VerticalAlignment="Top" Width="89"/>
         <ComboBox HorizontalAlignment="Left" Margin="402,22,0,0" VerticalAlignment="Top" Width="92" Name="cmbSortiranje"
                    SelectionChanged="cmbSortiranje_SelectionChanged"/>
     </Grid>

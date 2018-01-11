@@ -26,6 +26,7 @@ namespace POP_SF_06_2016_GUI.GUI
         private CollectionViewSource cvs;
 
         public Korisnik IzabraniKorisnik { get; set; }
+        public bool Enabled { get; set; }
 
         public KorisnikWindow()
         {
@@ -42,12 +43,14 @@ namespace POP_SF_06_2016_GUI.GUI
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            cmbPretraga.Items.Add("");
             cmbPretraga.Items.Add("Imenu");
             cmbPretraga.Items.Add("Prezimenu");
             cmbPretraga.Items.Add("Kor.imenu");
             cmbPretraga.SelectedIndex = 0;
 
             var korisnikSort = new List<string>();
+            korisnikSort.Add("");
             korisnikSort.Add("Imenu");
             korisnikSort.Add("Prezimenu");
             korisnikSort.Add("Kor.imenu");
@@ -55,6 +58,8 @@ namespace POP_SF_06_2016_GUI.GUI
             korisnikSort.Add("Tipu korisnika");
 
             cmbSortiranje.ItemsSource = korisnikSort;
+
+            //tbPretrazi.IsReadOnly = true;
         }
 
         private bool FilterNeobrisanihKorisnika(object obj)
@@ -136,6 +141,10 @@ namespace POP_SF_06_2016_GUI.GUI
             {
                 switch (korisnikSort)
                 {
+                    case "":
+                        cmbPretraga.SelectedIndex = 0;
+                        dgKorisnik.ItemsSource = view;
+                        break;
                     case "Imenu":
                         dgKorisnik.ItemsSource = Projekat.Instance.Korisnik.OrderBy(x => x.Ime);
                         break;
@@ -164,13 +173,17 @@ namespace POP_SF_06_2016_GUI.GUI
             Korisnik korisnik = (Korisnik)e.Item;
             switch (cmb)
             {
+                case "":
+                    break;
                 case "Imenu":
+                    //tbPretrazi.IsReadOnly = false;
                     e.Accepted = korisnik.Ime.ToString().ToLower().Contains(tb);
                     break;
-                case "Prezimenu":
+                case "Prezimenu":                    
                     e.Accepted = korisnik.Prezime.ToString().ToLower().Contains(tb);
-                    break;
-                case "Kor.imenu":
+                    break;                    
+                case "Kor.imenu":                    
+                    e.Accepted = korisnik.KorisnickoIme.ToString().ToLower().Contains(tb);
                     break;
                 default:
                     break;

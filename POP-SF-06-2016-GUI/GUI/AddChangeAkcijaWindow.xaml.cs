@@ -53,8 +53,26 @@ namespace POP_SF_06_2016_GUI.GUI
             dpDatumZavrsetka.DataContext = akcija;                   
         }
 
+        private bool Validacija()
+        {
+            BindingExpression bindEx1 = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+            bindEx1.UpdateSource();
+
+            if (Validation.GetHasError(tbNaziv) == true || Validation.GetHasError(tbPopust) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
         {
+            if (Validacija() == true)
+            {
+                return;
+            }
+
             var listaAkcija = Projekat.Instance.Akcija;           
 
             switch (operacija)
